@@ -1,34 +1,123 @@
 # Yosef Mekonnen Portfolio
 
-A premium personal website built with Next.js App Router, React, TypeScript, Tailwind CSS, Motion, and Lucide.
+A modern, responsive portfolio website showcasing my projects, technical skills, certifications, and experience as a Computer Science Co-op student at the University of Prince Edward Island.
 
-## Run locally
+🌐 **Live Website:** https://yosefmekonnen.dev
+
+---
+
+## ✨ Features
+
+- Responsive design optimized for desktop, tablet, and mobile
+- Modern UI built with Next.js App Router and React
+- Interactive projects showcase with GitHub and live demo links
+- Downloadable résumé
+- Certifications and achievements section
+- Contact form powered by Resend
+- SEO optimization with sitemap, robots.txt, Open Graph metadata, and icons
+- Custom domain deployment with Vercel
+- Accessible navigation and reduced-motion support
+
+---
+
+## 🛠️ Built With
+
+- Next.js 16
+- React
+- TypeScript
+- Tailwind CSS
+- Motion
+- Lucide React
+- Resend
+- Vercel
+
+---
+
+## 🚀 Getting Started
+
+### Clone the repository
+
+```bash
+git clone https://github.com/Yosef-dev116/Yosef-portfolio.git
+cd Yosef-portfolio
+```
+
+### Install dependencies
 
 ```bash
 npm install
+```
+
+### Start the development server
+
+```bash
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+Open your browser and visit:
 
-## Personalize before launch
+```
+http://localhost:3000
+```
 
-1. Replace `public/profile.jpg` and `public/resume.pdf`.
-2. Update email, LinkedIn, and GitHub links in `components/sections.tsx`.
-3. Replace project demo and repository URLs.
-4. Change `metadataBase`, sitemap, and robots domain from `yosefmekonnen.dev` to the final domain.
-5. Connect `/api/contact` to Resend, Postmark, Formspree, or a database.
-6. Replace testimonial, GitHub, achievement, and volunteer placeholders with verified content.
+---
 
-## Deploy to Vercel
+## 📂 Project Structure
 
-Push to GitHub, import the repository in Vercel, and deploy with the default Next.js settings. Add any email-service environment variables through the Vercel project dashboard.
+```
+app/
+components/
+public/
+lib/
+styles/
+```
 
-## Performance and accessibility
+---
+
+## 📧 Contact
+
+The contact form is powered by **Resend**.
+
+To run locally, create a `.env.local` file:
+
+```env
+RESEND_API_KEY=your_resend_api_key
+```
+
+---
+
+## 🚀 Deployment
+
+This project is deployed on **Vercel** with automatic deployments from the `main` branch.
+
+**Production:**  
+👉 https://yosefmekonnen.dev
+
+---
+
+## 📈 Performance & Accessibility
 
 - Server-rendered App Router pages
+- Responsive and mobile-first design
+- Semantic HTML and accessible navigation
+- Keyboard-accessible components
 - Reduced-motion support
-- Semantic landmarks and labels
-- Keyboard-accessible floating navigation and command palette
-- Generated metadata, sitemap, robots, icon, and Open Graph image
+- Optimized metadata and Open Graph images
+- Automatic sitemap and robots.txt generation
 - Minimal third-party JavaScript
+
+---
+
+## 📬 Connect With Me
+
+🌐 **Portfolio:** https://yosefmekonnen.dev
+
+💼 **LinkedIn:** https://linkedin.com/in/yosefmekonnen
+
+💻 **GitHub:** https://github.com/Yosef-dev116
+
+---
+
+## 📄 License
+
+This project is open source and available under the MIT License.
