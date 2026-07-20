@@ -12,7 +12,6 @@ export const projects = [
     stack: ["Next.js", "TypeScript", "FastAPI", "Python", "SQL", "REST APIs"],
     githubUrl: "https://github.com/Yosef-dev116/personal-finance-dashboard",
     liveUrl: "https://personal-finance-dashboard-eosin-alpha.vercel.app",
-    backendUrl: "https://personal-finance-dashboard-lrap.onrender.com",
     accent: "from-violet-500/30 to-cyan-400/10",
   },
 

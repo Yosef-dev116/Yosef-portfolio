@@ -288,23 +288,6 @@ export function Projects() {
                       </a>
                     )}
 
-                    {project.backendUrl && (
-                      <a
-                        href={project.backendUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Open backend API for ${project.title}`}
-                        className="inline-flex items-center rounded-xl border border-[var(--line)] px-5 py-3 text-sm transition hover:border-white/30 hover:bg-white/5"
-                      >
-                        Backend API
-                        <ArrowUpRight
-                          className="ml-2"
-                          size={16}
-                          aria-hidden="true"
-                        />
-                      </a>
-                    )}
-
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}
