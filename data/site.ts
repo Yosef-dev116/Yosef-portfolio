@@ -9,7 +9,7 @@ export const projects = [
       "Personal spending data is often scattered across accounts and difficult to interpret, making it harder for users to understand where their money goes and make informed financial decisions.",
     solution:
       "A centralized dashboard that organizes transactions, groups expenses by category, tracks spending trends, and presents financial data through simple, readable visualizations.",
-    stack: ["Next.js", "TypeScript", "FastAPI", "Python", "SQL", "REST APIs"],
+    stack: ["React", "Express", "Node.js", "JSON"],
     githubUrl: "https://github.com/Yosef-dev116/personal-finance-dashboard",
     liveUrl: "https://personal-finance-dashboard-eosin-alpha.vercel.app",
     accent: "from-violet-500/30 to-cyan-400/10",
@@ -25,7 +25,7 @@ export const projects = [
       "Energy usage data is generated continuously and can be difficult to monitor, analyze, and interpret in real time without a centralized system.",
     solution:
       "Developed a responsive dashboard that processes incoming data, displays live metrics, visualizes historical trends, and helps users identify unusual energy consumption patterns through interactive charts.",
-    stack: ["React", "FastAPI", "Python", "REST APIs", "SQL", "Chart.js"],
+    stack: ["React", "Python", "REST APIs", "Chart.js"],
     githubUrl: "https://github.com/Yosef-dev116/Real-Time-Energy-Dashboard",
     liveUrl: "",
     backendUrl: "",
