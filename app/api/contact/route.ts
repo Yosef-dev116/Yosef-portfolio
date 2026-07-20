@@ -49,7 +49,10 @@ export async function POST(request: Request) {
       console.error("Resend error:", error);
 
       return NextResponse.json(
-        { error: "Unable to send message" },
+        {
+          error: "Unable to send message",
+          details: error,
+        },
         { status: 500 },
       );
     }
