@@ -1,18 +1,18 @@
 export const projects = [
   {
-    slug: "finance-dashboard",
+    slug: "personal-finance-dashboard",
     title: "Personal Finance Dashboard",
-    tag: "FinTech + Full Stack",
+    tag: ["Data"],
     summary:
-      "A full-stack personal finance application that helps users track spending, organize transactions, and understand their financial habits through clear dashboards and analytics.",
+      "A full-stack personal finance application for tracking income, expenses, budgets, and financial activity.",
     problem:
-      "Personal spending data is often scattered across accounts and difficult to interpret, making it harder for users to understand where their money goes and make informed financial decisions.",
+      "Managing personal finances across disconnected tools makes it difficult to understand spending habits and financial progress.",
     solution:
-      "A centralized dashboard that organizes transactions, groups expenses by category, tracks spending trends, and presents financial data through simple, readable visualizations.",
-    stack: ["Next.js", "TypeScript", "FastAPI", "Python", "SQL", "REST APIs"],
-    githubUrl: "https://github.com/Yosef-dev116/personal-finance-dashboard",
+      "Built a centralized dashboard that allows users to record transactions, review financial data, and monitor their finances through a simple interface.",
+    stack: ["React", "Express", "Node.js", "JSON"],
     liveUrl: "https://personal-finance-dashboard-eosin-alpha.vercel.app",
-    accent: "from-violet-500/30 to-cyan-400/10",
+    githubUrl: "https://github.com/Yosef-dev116/personal-finance-dashboard",
+    accent: "...",
   },
 
   {

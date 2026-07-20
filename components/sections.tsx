@@ -271,35 +271,25 @@ export function Projects() {
                   </div>
 
                   <div className="mt-7 flex flex-wrap gap-3">
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Open live demo for ${project.title}`}
-                        className="inline-flex items-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
-                      >
-                        Live Demo
-                        <ExternalLink
-                          className="ml-2"
-                          size={16}
-                          aria-hidden="true"
-                        />
-                      </a>
-                    )}
+                    <a
+                      href="#"
+                      aria-label={`Open live demo for ${project.title}`}
+                      className="inline-flex items-center rounded-xl border border-[var(--line)] px-4 py-2 text-sm transition hover:border-white/30 hover:bg-white/5"
+                    >
+                      Live demo
+                      <ExternalLink className="ml-2" size={14} />
+                    </a>
 
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Open GitHub repository for ${project.title}`}
-                        className="inline-flex items-center rounded-xl border border-[var(--line)] px-5 py-3 text-sm transition hover:border-white/30 hover:bg-white/5"
-                      >
-                        GitHub Repository
-                        <GitHubIcon className="ml-2" size={16} />
-                      </a>
-                    )}
+                    <a
+                      href="https://github.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Open GitHub repository for ${project.title}`}
+                      className="inline-flex items-center rounded-xl border border-[var(--line)] px-4 py-2 text-sm transition hover:border-white/30 hover:bg-white/5"
+                    >
+                      GitHub
+                      <GitHubIcon className="ml-2" size={14} />
+                    </a>
                   </div>
                 </div>
               </div>
@@ -366,74 +356,62 @@ export function Experience() {
   );
 }
 export function GithubSection() {
+  const contributionCells = Array.from({ length: 84 });
+
   return (
     <section id="github" className="section">
       <div className="container">
         <SectionTitle
           eyebrow="GitHub"
-          title="Projects, progress, and code in public."
-          copy="My GitHub profile documents the software I build, the technologies I am learning, and the progress I make as a developer."
+          title="Proof of work, visible over time."
+          copy="Connect this section to the GitHub API or a server-side statistics service when your repositories are public and ready."
         />
 
-        <Reveal className="glass card overflow-hidden">
-          <div className="grid gap-8 p-7 md:p-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
-            <div>
-              <p className="eyebrow">Developer Profile</p>
+        <div className="grid gap-5 lg:grid-cols-3">
+          <div className="glass card p-7">
+            <p className="text-4xl font-semibold">24+</p>
 
-              <h3 className="mt-4 text-3xl font-semibold tracking-[-0.03em]">
-                Follow my development journey on GitHub.
-              </h3>
-
-              <p className="mt-5 max-w-2xl leading-7 text-[var(--muted)]">
-                Explore my repositories, coursework, experiments, and full-stack
-                projects. I use GitHub to document what I build, improve my
-                code, and share my progress over time.
-              </p>
-
-              <div className="mt-7 flex flex-wrap gap-3">
-                <a
-                  href="https://github.com/Yosef-dev116"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
-                >
-                  View GitHub Profile
-                  <GitHubIcon className="ml-2" size={16} />
-                </a>
-
-                <a
-                  href="https://github.com/Yosef-dev116?tab=repositories"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-xl border border-[var(--line)] px-5 py-3 text-sm transition hover:border-white/30 hover:bg-white/5"
-                >
-                  Browse Repositories
-                  <ArrowUpRight className="ml-2" size={16} aria-hidden="true" />
-                </a>
-              </div>
-            </div>
-
-            <div className="rounded-2xl border border-white/10 bg-black/20 p-6">
-              <GitHubIcon size={42} className="text-violet-400" />
-
-              <p className="mt-5 text-sm text-[var(--muted)]">
-                GitHub username
-              </p>
-
-              <p className="mt-1 text-xl font-semibold">@Yosef-dev116</p>
-
-              <div className="mt-6 space-y-3 text-sm text-[var(--muted)]">
-                <p>Software projects and experiments</p>
-                <p>Coursework and technical practice</p>
-                <p>Ongoing learning and development</p>
-              </div>
-            </div>
+            <p className="mt-2 text-[var(--muted)]">Repositories placeholder</p>
           </div>
-        </Reveal>
+
+          <div className="glass card p-7">
+            <p className="text-4xl font-semibold">1,200+</p>
+
+            <p className="mt-2 text-[var(--muted)]">
+              Contributions placeholder
+            </p>
+          </div>
+
+          <div className="glass card p-7">
+            <p className="text-4xl font-semibold">8</p>
+
+            <p className="mt-2 text-[var(--muted)]">
+              Current streak placeholder
+            </p>
+          </div>
+        </div>
+
+        <div
+          className="glass card mt-5 overflow-x-auto p-6"
+          aria-label="GitHub contribution graph placeholder"
+        >
+          <div className="grid min-w-[560px] grid-cols-12 gap-2">
+            {contributionCells.map((_, index) => (
+              <span
+                key={index}
+                style={{
+                  opacity: 0.12 + (index % 7) / 10,
+                }}
+                className="aspect-square rounded-sm bg-emerald-400"
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
 }
+
 export function Extras() {
   const achievements = [
     {
@@ -463,8 +441,6 @@ export function Extras() {
       category: "Engineering",
       description:
         "Participated in an engineering fair focused on applying scientific thinking, creativity, and practical problem-solving.",
-      credentialUrl: "/certificates/stempower-engineering-fair.jpg",
-      credentialType: "verification",
     },
     {
       title: "Active Problem Solving",
@@ -473,8 +449,7 @@ export function Extras() {
       category: "Professional Skills",
       description:
         "Developed structured approaches for analyzing challenges, evaluating possible solutions, and taking effective action.",
-      credentialUrl:
-        "https://credentials.wavemakers.network/verifier?id=f114dfa6-5690-445f-b95e-c8cfa2fa3f9d&dbl=to",
+      credentialUrl: "",
       credentialType: "verification",
     },
     {
@@ -484,8 +459,7 @@ export function Extras() {
       category: "Professional Skills",
       description:
         "Strengthened the ability to adapt, remain focused, and continue progressing through challenges and uncertainty.",
-      credentialUrl:
-        "https://credentials.wavemakers.network/verifier?id=76b718b7-8111-475a-bfad-f4629e9aadd3&dbl=to",
+      credentialUrl: "",
       credentialType: "verification",
     },
     {
@@ -495,8 +469,7 @@ export function Extras() {
       category: "Professional Skills",
       description:
         "Built greater awareness of communication, collaboration, emotional intelligence, and responsible decision-making.",
-      credentialUrl:
-        "https://credentials.wavemakers.network/verifier?id=421238e5-5a87-465c-bb25-4ca48e785633&dbl=to",
+      credentialUrl: "",
       credentialType: "verification",
     },
   ];
@@ -604,7 +577,7 @@ export function Contact() {
               </a>
 
               <a
-                href="https://github.com/Yosef-dev116"
+                href="https://github.com/Yosef-dev116/Yosef-dev116"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 transition hover:text-violet-400"
