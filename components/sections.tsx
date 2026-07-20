@@ -499,6 +499,17 @@ export function Extras() {
         "https://credentials.wavemakers.network/verifier?id=421238e5-5a87-465c-bb25-4ca48e785633&dbl=to",
       credentialType: "verification",
     },
+    {
+      title: "Describe Cloud Computing",
+      issuer: "Microsoft Learn",
+      year: "2026",
+      category: "Cloud Computing",
+      description:
+        "Completed the Microsoft Learn module introducing cloud computing concepts, cloud service models, and deployment models.",
+      credentialUrl:
+        "https://learn.microsoft.com/api/achievements/share/en-us/Yosef-2665/4CHBYCMK?sharingId=73F701D390F916BC",
+      credentialType: "verification",
+    },
   ];
 
   return (
