@@ -463,6 +463,8 @@ export function Extras() {
       category: "Engineering",
       description:
         "Participated in an engineering fair focused on applying scientific thinking, creativity, and practical problem-solving.",
+      credentialUrl: "/certificates/stempower-engineering-fair.jpg",
+      credentialType: "verification",
     },
     {
       title: "Active Problem Solving",
@@ -471,7 +473,8 @@ export function Extras() {
       category: "Professional Skills",
       description:
         "Developed structured approaches for analyzing challenges, evaluating possible solutions, and taking effective action.",
-      credentialUrl: "",
+      credentialUrl:
+        "https://credentials.wavemakers.network/verifier?id=f114dfa6-5690-445f-b95e-c8cfa2fa3f9d&dbl=to",
       credentialType: "verification",
     },
     {
@@ -481,7 +484,8 @@ export function Extras() {
       category: "Professional Skills",
       description:
         "Strengthened the ability to adapt, remain focused, and continue progressing through challenges and uncertainty.",
-      credentialUrl: "",
+      credentialUrl:
+        "https://credentials.wavemakers.network/verifier?id=76b718b7-8111-475a-bfad-f4629e9aadd3&dbl=to",
       credentialType: "verification",
     },
     {
@@ -491,7 +495,8 @@ export function Extras() {
       category: "Professional Skills",
       description:
         "Built greater awareness of communication, collaboration, emotional intelligence, and responsible decision-making.",
-      credentialUrl: "",
+      credentialUrl:
+        "https://credentials.wavemakers.network/verifier?id=421238e5-5a87-465c-bb25-4ca48e785633&dbl=to",
       credentialType: "verification",
     },
   ];
