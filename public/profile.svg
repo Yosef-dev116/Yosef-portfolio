@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Profile photo placeholder">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7c3aed"/><stop offset="1" stop-color="#0e7490"/></linearGradient></defs>
+<rect width="800" height="1000" rx="70" fill="#0b0d12"/><circle cx="400" cy="380" r="170" fill="url(#g)" opacity=".7"/><path d="M130 930c25-230 160-340 270-340s245 110 270 340" fill="url(#g)" opacity=".65"/><text x="400" y="415" text-anchor="middle" fill="white" font-family="Arial" font-size="92" font-weight="700">YM</text>
+</svg>
