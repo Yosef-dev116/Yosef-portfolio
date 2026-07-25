@@ -2,14 +2,14 @@ export const projects = [
   {
     slug: "finance-dashboard",
     title: "Personal Finance Dashboard",
-    tag: "FinTech + Full Stack",
+    tag: "FinTech + AI + Full Stack",
     summary:
-      "A full-stack personal finance application that helps users track spending, organize transactions, and understand their financial habits through clear dashboards and analytics.",
+      "A full-stack personal finance application that helps users track spending, organize transactions, and understand their financial habits through clear dashboards, analytics, and OpenAI-powered insights.",
     problem:
       "Personal spending data is often scattered across accounts and difficult to interpret, making it harder for users to understand where their money goes and make informed financial decisions.",
     solution:
-      "A centralized dashboard that organizes transactions, groups expenses by category, tracks spending trends, and presents financial data through simple, readable visualizations.",
-    stack: ["React", "Express", "Node.js", "JSON"],
+      "A centralized dashboard that organizes transactions, groups expenses by category, tracks spending trends, and uses the OpenAI API to turn raw transaction data into plain-language financial insights alongside readable visualizations.",
+    stack: ["React", "Express", "Node.js", "OpenAI API", "JSON"],
     githubUrl: "https://github.com/Yosef-dev116/personal-finance-dashboard",
     liveUrl: "https://personal-finance-dashboard-eosin-alpha.vercel.app",
     accent: "from-violet-500/30 to-cyan-400/10",
@@ -25,10 +25,10 @@ export const projects = [
       "Energy usage data is generated continuously and can be difficult to monitor, analyze, and interpret in real time without a centralized system.",
     solution:
       "Developed a responsive dashboard that processes incoming data, displays live metrics, visualizes historical trends, and helps users identify unusual energy consumption patterns through interactive charts.",
-    stack: ["React", "Python", "REST APIs", "Chart.js"],
+    stack: ["React", "Python", "FastAPI", "Recharts"],
     githubUrl: "https://github.com/Yosef-dev116/Real-Time-Energy-Dashboard",
-    liveUrl: "",
-    backendUrl: "",
+    liveUrl: "https://frontend-ten-chi-38.vercel.app",
+    backendUrl: "https://energy-dashboard-backend-dc3t.onrender.com",
     accent: "from-emerald-500/25 to-blue-500/10",
   },
 ];

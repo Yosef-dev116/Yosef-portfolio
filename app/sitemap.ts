@@ -1,1 +1,23 @@
-import type{MetadataRoute}from"next";export default function sitemap():MetadataRoute.Sitemap{return[{url:"https://yosefmekonnen.dev",lastModified:new Date(),changeFrequency:"monthly",priority:1},{url:"https://yosefmekonnen.dev/projects",lastModified:new Date(),changeFrequency:"monthly",priority:.8},{url:"https://yosefmekonnen.dev/blog",lastModified:new Date(),changeFrequency:"weekly",priority:.7}]}
+import type { MetadataRoute } from "next";
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
+    {
+      url: "https://yosefmekonnen.dev",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 1,
+    },
+    {
+      url: "https://yosefmekonnen.dev/projects",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: "https://yosefmekonnen.dev/blog",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+  ];
+}
