@@ -31,6 +31,22 @@ export const projects = [
     backendUrl: "https://energy-dashboard-backend-dc3t.onrender.com",
     accent: "from-emerald-500/25 to-blue-500/10",
   },
+
+  {
+    slug: "fastapi-docs-rag",
+    title: "FastAPI Docs Q&A — Hybrid RAG",
+    tag: "AI + Retrieval-Augmented Generation",
+    summary:
+      "A retrieval-augmented question-answering system over FastAPI's own documentation, combining dense and keyword search with an independent fact-check on every cited claim. Scored on a hand-written 18-question eval: 100% correctness, 86% citation faithfulness, 100% citation accuracy, and 100% correct refusal on out-of-corpus questions.",
+    problem:
+      "Technical documentation mixes exact terms (function names, error codes, config keys) with conceptual explanations, so semantic search alone misses literal matches and keyword search alone misses paraphrased questions. On top of that, language models can cite a source that sounds relevant without it actually supporting the specific claim attached to it.",
+    solution:
+      "Combines dense embedding search (OpenAI embeddings + ChromaDB) with sparse BM25 keyword search, merged with Reciprocal Rank Fusion, so the system catches both literal terms and conceptual questions. Every generated answer cites its sources, and a second, independent LLM call checks each citation against the specific claim it's attached to before the answer is shown — with results measured against a real eval set rather than only spot-checked by hand.",
+    stack: ["Python", "OpenAI API", "ChromaDB", "BM25", "Streamlit"],
+    githubUrl: "https://github.com/Yosef-dev116/fastapi-docs-rag",
+    liveUrl: "https://yosef-fastapi-docs-rag.streamlit.app",
+    accent: "from-amber-500/25 to-rose-500/10",
+  },
 ];
 
 export const skills = {
