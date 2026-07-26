@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import { ArrowRight, Download, MapPin, Sparkles } from "lucide-react";
 
@@ -102,19 +103,24 @@ export default function Hero() {
         >
           <div className="absolute -inset-10 -z-10 rounded-full bg-violet-500/15 blur-3xl" />
 
-          <div className="grid h-full place-items-center overflow-hidden rounded-[1.6rem] bg-gradient-to-br from-violet-500/20 via-slate-900 to-cyan-500/10">
-            <div className="text-center">
-              <div className="mx-auto grid h-28 w-28 place-items-center rounded-full border border-white/15 bg-white/5 text-4xl font-bold">
-                YM
-              </div>
+          <div className="relative h-full overflow-hidden rounded-[1.6rem]">
+            <Image
+              src="/profile.jpg"
+              alt="Yosef Mekonnen"
+              fill
+              priority
+              sizes="(min-width: 1024px) 24rem, 90vw"
+              className="object-cover"
+            />
 
-              <p className="mt-5 font-medium">Yosef Mekonnen</p>
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent p-6 text-center">
+              <p className="font-medium text-white">Yosef Mekonnen</p>
 
-              <p className="mt-1 text-sm text-[var(--muted)]">
+              <p className="mt-1 text-sm text-white/80">
                 Computer Science Co-op Student
               </p>
 
-              <p className="mt-1 text-sm text-[var(--muted)]">
+              <p className="mt-1 text-sm text-white/80">
                 Software Engineer · Full-Stack Developer · AI Builder
               </p>
             </div>
