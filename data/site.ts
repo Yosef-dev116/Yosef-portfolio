@@ -3,6 +3,7 @@ export const projects = [
     slug: "finance-dashboard",
     title: "Personal Finance Dashboard",
     tag: "FinTech + AI + Full Stack",
+    year: "2026",
     summary:
       "A full-stack personal finance application that helps users track spending, organize transactions, and understand their financial habits through clear dashboards, analytics, and OpenAI-powered insights.",
     problem:
@@ -12,6 +13,7 @@ export const projects = [
     stack: ["React", "Express", "Node.js", "OpenAI API", "JSON"],
     githubUrl: "https://github.com/Yosef-dev116/personal-finance-dashboard",
     liveUrl: "https://personal-finance-dashboard-eosin-alpha.vercel.app",
+    image: "/project-finance.jpg",
     accent: "from-violet-500/30 to-cyan-400/10",
   },
 
@@ -19,6 +21,7 @@ export const projects = [
     slug: "energy-dashboard",
     title: "Real-Time Energy Dashboard",
     tag: "Data Visualization + Backend Systems",
+    year: "2026",
     summary:
       "A real-time monitoring platform that collects, processes, and visualizes energy consumption data through interactive dashboards and live analytics.",
     problem:
@@ -29,6 +32,7 @@ export const projects = [
     githubUrl: "https://github.com/Yosef-dev116/Real-Time-Energy-Dashboard",
     liveUrl: "https://frontend-ten-chi-38.vercel.app",
     backendUrl: "https://energy-dashboard-backend-dc3t.onrender.com",
+    image: "/project-energy.jpg",
     accent: "from-emerald-500/25 to-blue-500/10",
   },
 
@@ -36,6 +40,7 @@ export const projects = [
     slug: "fastapi-docs-rag",
     title: "FastAPI Docs Q&A — Hybrid RAG",
     tag: "AI + Retrieval-Augmented Generation",
+    year: "2026",
     summary:
       "A retrieval-augmented question-answering system over FastAPI's own documentation, combining dense and keyword search with an independent fact-check on every cited claim. Scored on a hand-written 18-question eval: 100% correctness, 86% citation faithfulness, 100% citation accuracy, and 100% correct refusal on out-of-corpus questions.",
     problem:
@@ -45,6 +50,7 @@ export const projects = [
     stack: ["Python", "OpenAI API", "ChromaDB", "BM25", "Streamlit"],
     githubUrl: "https://github.com/Yosef-dev116/fastapi-docs-rag",
     liveUrl: "https://yosef-fastapi-docs-rag.streamlit.app",
+    image: "/project-rag.jpg",
     accent: "from-amber-500/25 to-rose-500/10",
   },
 ];

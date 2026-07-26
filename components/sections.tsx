@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   ArrowUpRight,
   BookOpen,
   Code2,
-  ExternalLink,
   GraduationCap,
   Mail,
   MapPin,
@@ -213,94 +213,70 @@ export function Projects() {
           </div>
         </div>
 
-        <div className="space-y-8">
+        <div className="grid gap-6 sm:grid-cols-2">
           {shownProjects.map((project) => (
-            <Reveal key={project.slug} className="glass card overflow-hidden">
-              <div className="grid lg:grid-cols-2">
-                <div
-                  className={`grid min-h-72 place-items-center bg-gradient-to-br ${project.accent} p-8`}
-                >
-                  <div className="w-full max-w-md rounded-2xl border border-white/10 bg-black/30 p-4 shadow-2xl">
-                    <div className="mb-3 flex gap-2">
-                      <span className="h-2 w-2 rounded-full bg-white/30" />
-                      <span className="h-2 w-2 rounded-full bg-white/20" />
-                      <span className="h-2 w-2 rounded-full bg-white/10" />
-                    </div>
+            <Reveal
+              key={project.slug}
+              className="glass card flex h-full flex-col overflow-hidden"
+            >
+              <div className="relative aspect-[16/10] w-full">
+                <Image
+                  src={project.image}
+                  alt={`${project.title} screenshot`}
+                  fill
+                  sizes="(min-width: 640px) 32rem, 90vw"
+                  className="object-cover object-top"
+                />
+              </div>
 
-                    <div className="grid h-44 grid-cols-3 gap-3">
-                      <div className="rounded-xl bg-white/5" />
-                      <div className="col-span-2 rounded-xl bg-white/5" />
-                      <div className="col-span-3 rounded-xl bg-white/5" />
-                    </div>
-                  </div>
+              <div className="flex flex-1 flex-col p-6 md:p-7">
+                <div className="flex items-center justify-between gap-4">
+                  <p className="eyebrow">{project.tag}</p>
+                  <span className="text-xs text-[var(--muted)]">
+                    {project.year}
+                  </span>
                 </div>
 
-                <div className="p-7 md:p-10">
-                  <p className="eyebrow">{project.tag}</p>
+                <h3 className="mt-3 text-2xl font-semibold">
+                  {project.title}
+                </h3>
 
-                  <h3 className="mt-3 text-3xl font-semibold">
-                    {project.title}
-                  </h3>
+                <p className="mt-3 line-clamp-3 leading-7 text-[var(--muted)]">
+                  {project.summary}
+                </p>
 
-                  <p className="mt-4 leading-7 text-[var(--muted)]">
-                    {project.summary}
-                  </p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {project.stack.map((technology) => (
+                    <Pill key={technology}>{technology}</Pill>
+                  ))}
+                </div>
 
-                  <div className="mt-6 grid gap-4 text-sm sm:grid-cols-2">
-                    <div>
-                      <p className="font-semibold">Problem</p>
+                <div className="mt-6 flex gap-5 text-sm font-semibold">
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Open live demo for ${project.title}`}
+                      className="inline-flex items-center gap-1 text-violet-400 transition hover:text-violet-300"
+                    >
+                      Live
+                      <ArrowUpRight size={14} aria-hidden="true" />
+                    </a>
+                  )}
 
-                      <p className="mt-2 text-[var(--muted)]">
-                        {project.problem}
-                      </p>
-                    </div>
-
-                    <div>
-                      <p className="font-semibold">Solution</p>
-
-                      <p className="mt-2 text-[var(--muted)]">
-                        {project.solution}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {project.stack.map((technology) => (
-                      <Pill key={technology}>{technology}</Pill>
-                    ))}
-                  </div>
-
-                  <div className="mt-7 flex flex-wrap gap-3">
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Open live demo for ${project.title}`}
-                        className="inline-flex items-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
-                      >
-                        Live Demo
-                        <ExternalLink
-                          className="ml-2"
-                          size={16}
-                          aria-hidden="true"
-                        />
-                      </a>
-                    )}
-
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Open GitHub repository for ${project.title}`}
-                        className="inline-flex items-center rounded-xl border border-[var(--line)] px-5 py-3 text-sm transition hover:border-white/30 hover:bg-white/5"
-                      >
-                        GitHub Repository
-                        <GitHubIcon className="ml-2" size={16} />
-                      </a>
-                    )}
-                  </div>
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Open GitHub repository for ${project.title}`}
+                      className="inline-flex items-center gap-1 transition hover:text-violet-300"
+                    >
+                      Code
+                      <ArrowUpRight size={14} aria-hidden="true" />
+                    </a>
+                  )}
                 </div>
               </div>
             </Reveal>
