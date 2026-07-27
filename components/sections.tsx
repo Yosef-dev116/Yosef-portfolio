@@ -278,6 +278,12 @@ export function Projects() {
                     </a>
                   )}
                 </div>
+
+                {project.liveUrl && project.liveNote && (
+                  <p className="mt-2 text-xs text-[var(--muted)]">
+                    {project.liveNote}
+                  </p>
+                )}
               </div>
             </Reveal>
           ))}
