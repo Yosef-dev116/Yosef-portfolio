@@ -244,7 +244,7 @@ export default function Hero() {
             <a
               href="/resume.pdf"
               download
-              className="glass focus-ring col-span-2 row-start-5 flex items-center justify-center gap-1.5 rounded-xl px-4 py-2 text-sm font-semibold"
+              className="glass focus-ring col-span-2 row-start-5 inline-flex w-fit items-center justify-self-center gap-1.5 rounded-xl px-4 py-2 text-sm font-semibold"
             >
               <Download size={15} />
               Resume

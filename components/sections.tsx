@@ -2,25 +2,87 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, GraduationCap, Heart, Target } from "lucide-react";
 
 import { projects, skills } from "@/data/site";
 import { Pill, Reveal, SectionTitle } from "./ui";
 
+function LangIcon({ name }: { name: string }) {
+  const className = "h-9 w-9 rounded-lg";
+
+  switch (name) {
+    case "Python":
+      return (
+        <svg viewBox="0 0 24 24" className={className}>
+          <rect width="24" height="24" rx="6" fill="#1a1a1a" />
+          <path
+            d="M12 4c-3 0-2.8 1.3-2.8 1.3l.003 1.36h2.87v.4H8.1S6.3 7.3 6.3 10s1.6 2.9 1.6 2.9h.96v-1.5s-.05-1.6 1.56-1.6h2.7s1.46.02 1.46-1.4V5.5S14.5 4 12 4Z"
+            fill="#3776AB"
+          />
+          <path
+            d="M12 20c3 0 2.8-1.3 2.8-1.3l-.003-1.36h-2.87v-.4h3.98s1.8-.2 1.8-2.9-1.6-2.9-1.6-2.9h-.96v1.5s.05 1.6-1.56 1.6h-2.7s-1.46-.02-1.46 1.4v2.9S9.5 20 12 20Z"
+            fill="#FFD43B"
+          />
+        </svg>
+      );
+    case "Java":
+      return (
+        <svg viewBox="0 0 24 24" className={className}>
+          <rect width="24" height="24" rx="6" fill="#e11d1d" />
+          <text x="12" y="16" fontFamily="Arial, sans-serif" fontSize="9" fontWeight="700" fill="#fff" textAnchor="middle">
+            JV
+          </text>
+        </svg>
+      );
+    case "JavaScript":
+      return (
+        <svg viewBox="0 0 24 24" className={className}>
+          <rect width="24" height="24" rx="6" fill="#f0db4f" />
+          <text x="12" y="16" fontFamily="Arial, sans-serif" fontSize="9" fontWeight="700" fill="#111" textAnchor="middle">
+            JS
+          </text>
+        </svg>
+      );
+    case "TypeScript":
+      return (
+        <svg viewBox="0 0 24 24" className={className}>
+          <rect width="24" height="24" rx="6" fill="#3178c6" />
+          <text x="12" y="16" fontFamily="Arial, sans-serif" fontSize="9" fontWeight="700" fill="#fff" textAnchor="middle">
+            TS
+          </text>
+        </svg>
+      );
+    case "SQL":
+      return (
+        <svg viewBox="0 0 24 24" className={className}>
+          <rect width="24" height="24" rx="6" fill="#f29111" />
+          <text x="12" y="16" fontFamily="Arial, sans-serif" fontSize="7.5" fontWeight="700" fill="#fff" textAnchor="middle">
+            SQL
+          </text>
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
 export function About() {
-  const aboutCards = [
+  const aboutItems = [
     {
       title: "Journey",
+      icon: GraduationCap,
       description:
         "I began studying Computer Science at the University of Prince Edward Island in January 2025. Through the Co-op program and a minor in Mathematics, I'm building a strong foundation in software engineering, algorithms, and problem solving.",
     },
     {
       title: "Goal",
+      icon: Target,
       description:
         "My goal is to become a software engineer who builds reliable, scalable, and intelligent software. I'm especially interested in backend development, full-stack applications, artificial intelligence, and cloud technologies.",
     },
     {
       title: "Values",
+      icon: Heart,
       description:
         "I believe in continuous learning, taking ownership, writing clean code, and building software that genuinely helps people solve real problems.",
     },
@@ -35,13 +97,13 @@ export function About() {
           copy="I'm passionate about creating software that is practical, reliable, and enjoyable to use. Every project is an opportunity to improve my engineering skills, learn new technologies, and solve meaningful problems."
         />
 
-        <div className="grid gap-5 md:grid-cols-3">
-          {aboutCards.map((card) => (
-            <Reveal key={card.title} className="glass card p-7">
-              <h3 className="text-xl font-semibold">{card.title}</h3>
-
-              <p className="mt-4 leading-7 text-[var(--muted)]">
-                {card.description}
+        <div className="grid gap-10 md:grid-cols-3">
+          {aboutItems.map((item) => (
+            <Reveal key={item.title}>
+              <item.icon className="text-violet-400" size={28} aria-hidden="true" />
+              <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
+              <p className="mt-3 leading-7 text-[var(--muted)]">
+                {item.description}
               </p>
             </Reveal>
           ))}
@@ -59,10 +121,10 @@ export function Skills() {
           title="A growing toolkit for building complete products."
         />
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {Object.entries(skills).map(([category, skillItems], index) => (
-            <Reveal key={category} className="glass card p-6">
-              <div className="mb-5 flex justify-between gap-4">
+            <Reveal key={category}>
+              <div className="mb-4 flex items-center justify-between gap-4">
                 <h3 className="font-semibold">{category}</h3>
 
                 <span className="text-xs text-[var(--muted)]">
@@ -70,11 +132,20 @@ export function Skills() {
                 </span>
               </div>
 
-              <div className="flex flex-wrap gap-2">
-                {skillItems.map((skill) => (
-                  <Pill key={skill}>{skill}</Pill>
-                ))}
-              </div>
+              {category === "Languages" ? (
+                <div className="flex flex-wrap gap-3">
+                  {skillItems.map((skill) => (
+                    <div key={skill} className="flex flex-col items-center gap-1.5">
+                      <LangIcon name={skill} />
+                      <span className="text-xs text-[var(--muted)]">{skill}</span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="leading-7 text-[var(--muted)]">
+                  {skillItems.join(" · ")}
+                </p>
+              )}
             </Reveal>
           ))}
         </div>
@@ -98,7 +169,7 @@ export function Projects() {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionTitle
             eyebrow="Selected work"
-            title="Projects designed as products, not assignments."
+            title="Projects designed as products."
           />
 
           <div
