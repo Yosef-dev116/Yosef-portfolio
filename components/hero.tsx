@@ -20,6 +20,109 @@ function GitHubIcon({ size = 17 }: { size?: number }) {
   );
 }
 
+function monogram(text: string, bg: string, fg = "#fff") {
+  return (
+    <svg viewBox="0 0 24 24">
+      <rect x="1" y="1" width="22" height="22" rx="6" fill={bg} />
+      <text
+        x="12"
+        y="16.5"
+        fontFamily="Arial, sans-serif"
+        fontSize="9"
+        fontWeight="700"
+        fill={fg}
+        textAnchor="middle"
+      >
+        {text}
+      </text>
+    </svg>
+  );
+}
+
+const floatingIcons = [
+  {
+    id: "python",
+    top: "4%",
+    left: "16%",
+    size: 46,
+    duration: 5,
+    delay: 0,
+    svg: (
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M12 2c-3.6 0-3.4 1.6-3.4 1.6l.004 1.66h3.46v.5H7.2S5 5.5 5 9.1s1.9 3.5 1.9 3.5h1.15V10.9s-.06-1.9 1.87-1.9h3.24s1.76.03 1.76-1.7V4.4S15.2 2 12 2Z"
+          fill="#3776AB"
+        />
+        <path
+          d="M12 22c3.6 0 3.4-1.6 3.4-1.6l-.004-1.66h-3.46v-.5h4.86S19 17.5 19 13.9s-1.9-3.5-1.9-3.5h-1.15v2.7s.06 1.9-1.87 1.9H10.8s-1.76-.03-1.76 1.7v2.9S8.8 22 12 22Z"
+          fill="#FFD43B"
+        />
+      </svg>
+    ),
+  },
+  {
+    id: "react",
+    top: "32%",
+    left: "3%",
+    size: 42,
+    duration: 6,
+    delay: 0.4,
+    svg: (
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="2.2" fill="#61dafb" />
+        <g stroke="#61dafb" strokeWidth="1.3" fill="none">
+          <ellipse cx="12" cy="12" rx="10" ry="4.2" />
+          <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)" />
+          <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)" />
+        </g>
+      </svg>
+    ),
+  },
+  {
+    id: "java",
+    top: "14%",
+    left: "56%",
+    size: 40,
+    duration: 6.5,
+    delay: 0.2,
+    svg: monogram("JV", "#e11d1d"),
+  },
+  {
+    id: "javascript",
+    top: "48%",
+    left: "64%",
+    size: 40,
+    duration: 5,
+    delay: 0.6,
+    svg: monogram("JS", "#f0db4f", "#111"),
+  },
+  {
+    id: "typescript",
+    top: "58%",
+    left: "22%",
+    size: 40,
+    duration: 5.5,
+    delay: 0.8,
+    svg: monogram("TS", "#3178c6"),
+  },
+  {
+    id: "sql",
+    top: "76%",
+    left: "48%",
+    size: 40,
+    duration: 6,
+    delay: 1,
+    svg: monogram("SQL", "#f29111"),
+  },
+];
+
+const floatingChips = [
+  { id: "tags", top: "0%", left: "78%", duration: 5, delay: 0.3, text: "</>" },
+  { id: "braces", top: "40%", left: "86%", duration: 6, delay: 0.7, text: "{ }" },
+  { id: "num1", top: "68%", left: "80%", duration: 5.5, delay: 1.1, text: "01" },
+  { id: "num2", top: "90%", left: "62%", duration: 5, delay: 0.5, text: "10" },
+];
+
 export default function Hero() {
   return (
     <section
@@ -29,7 +132,43 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--bg)]" />
 
       <div className="container relative z-10 grid items-center gap-14 lg:grid-cols-[1.25fr_.75fr]">
-        <div />
+        <div className="relative hidden min-h-[420px] lg:block">
+          {floatingIcons.map((item) => (
+            <motion.div
+              key={item.id}
+              style={{ top: item.top, left: item.left, width: item.size, height: item.size }}
+              className="glass absolute grid place-items-center rounded-2xl"
+              animate={{ y: [0, -14, 0], rotate: [0, 4, 0] }}
+              transition={{
+                duration: item.duration,
+                delay: item.delay,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <span style={{ width: item.size * 0.5, height: item.size * 0.5 }}>
+                {item.svg}
+              </span>
+            </motion.div>
+          ))}
+
+          {floatingChips.map((item) => (
+            <motion.div
+              key={item.id}
+              style={{ top: item.top, left: item.left }}
+              className="glass absolute rounded-xl px-3 py-1.5 font-mono text-sm text-[var(--muted)]"
+              animate={{ y: [0, -10, 0] }}
+              transition={{
+                duration: item.duration,
+                delay: item.delay,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              {item.text}
+            </motion.div>
+          ))}
+        </div>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
@@ -39,8 +178,10 @@ export default function Hero() {
         >
           <div className="absolute -inset-10 -z-10 rounded-full bg-violet-500/15 blur-3xl" />
 
-          <div className="grid grid-cols-2 grid-rows-[repeat(3,auto)_auto] gap-3">
-            <div className="glass card relative col-start-1 row-span-3 row-start-1 overflow-hidden">
+          <div className="grid grid-cols-2 grid-rows-[auto_repeat(3,auto)_auto] gap-3">
+            <p className="col-start-1 row-start-1 font-semibold">Yosef Mekonnen</p>
+
+            <div className="glass card relative col-start-1 row-span-3 row-start-2 overflow-hidden">
               <Image
                 src="/profile.jpg"
                 alt="Yosef Mekonnen"
@@ -49,16 +190,13 @@ export default function Hero() {
                 sizes="(min-width: 1024px) 12rem, 45vw"
                 className="object-cover"
               />
-              <div className="absolute inset-x-0 top-0 z-10 bg-gradient-to-b from-black/70 to-transparent px-4 pb-8 pt-4">
-                <p className="font-semibold text-white">Yosef Mekonnen</p>
-              </div>
             </div>
 
             <a
               href="https://www.linkedin.com/in/yosefmekonnen"
               target="_blank"
               rel="noopener noreferrer"
-              className="col-start-2 row-start-1 flex items-center gap-2 py-1"
+              className="col-start-2 row-start-2 flex items-center gap-2 py-1"
             >
               <span className="grid h-9 w-9 flex-shrink-0 place-items-center rounded-lg bg-[#0a66c2]">
                 <LinkedInIcon size={16} />
@@ -75,7 +213,7 @@ export default function Hero() {
               href="https://github.com/Yosef-dev116"
               target="_blank"
               rel="noopener noreferrer"
-              className="col-start-2 row-start-2 flex items-center gap-2 py-1"
+              className="col-start-2 row-start-3 flex items-center gap-2 py-1"
             >
               <span className="grid h-9 w-9 flex-shrink-0 place-items-center rounded-lg border border-[var(--line)] bg-[#14161b]">
                 <GitHubIcon size={16} />
@@ -90,7 +228,7 @@ export default function Hero() {
 
             <a
               href="mailto:yoseffmek116@gmail.com"
-              className="col-start-2 row-start-3 flex items-center gap-2 py-1"
+              className="col-start-2 row-start-4 flex items-center gap-2 py-1"
             >
               <span className="grid h-9 w-9 flex-shrink-0 place-items-center rounded-lg bg-violet-500/80">
                 <Mail size={16} className="text-white" aria-hidden="true" />
@@ -106,9 +244,9 @@ export default function Hero() {
             <a
               href="/resume.pdf"
               download
-              className="glass focus-ring col-span-2 row-start-4 flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold"
+              className="glass focus-ring col-span-2 row-start-5 flex items-center justify-center gap-1.5 rounded-xl px-4 py-2 text-sm font-semibold"
             >
-              <Download size={17} />
+              <Download size={15} />
               Resume
             </a>
           </div>

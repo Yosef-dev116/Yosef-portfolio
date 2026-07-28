@@ -17,10 +17,6 @@ export default function Home() {
             <MapPin size={15} aria-hidden="true" />
             Charlottetown, PE, Canada
           </p>
-          <p>
-            Designed and built with Next.js, TypeScript, Tailwind CSS, and
-            Motion.
-          </p>
         </div>
       </footer>
     </main>
