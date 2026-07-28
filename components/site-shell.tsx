@@ -40,7 +40,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
             {links.map((x) => (
               <a
                 key={x}
-                href={`#${x}`}
+                href={x === "blog" ? "/blog" : `/#${x}`}
                 className="text-sm capitalize text-[var(--muted)] hover:text-[var(--text)] transition focus-ring"
               >
                 {x}
@@ -76,7 +76,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
               <a
                 onClick={() => setOpen(false)}
                 key={x}
-                href={`#${x}`}
+                href={x === "blog" ? "/blog" : `/#${x}`}
                 className="block py-3 capitalize"
               >
                 {x}
@@ -113,7 +113,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
             {links.map((x) => (
               <a
                 onClick={() => setPalette(false)}
-                href={`#${x}`}
+                href={x === "blog" ? "/blog" : `/#${x}`}
                 key={x}
                 className="block rounded-xl px-4 py-3 capitalize hover:bg-white/5"
               >
