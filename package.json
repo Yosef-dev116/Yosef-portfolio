@@ -12,9 +12,11 @@
   },
   "dependencies": {
     "@vercel/analytics": "latest",
+    "gray-matter": "^4.0.3",
     "lucide-react": "latest",
     "motion": "latest",
     "next": "latest",
+    "next-mdx-remote": "^6.0.0",
     "react": "latest",
     "react-dom": "latest",
     "resend": "^6.17.2"
