@@ -1,8 +1,62 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { Download, Mail, MapPin, Sparkles } from "lucide-react";
+
+const roles = [
+  "Software Engineer",
+  "Full-Stack Developer",
+  "AI Builder",
+  "CS Co-op Student",
+];
+
+function useTypewriter(
+  words: string[],
+  typingSpeed = 65,
+  deletingSpeed = 35,
+  pause = 1400,
+) {
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    function tick() {
+      const current = words[wordIndex];
+
+      if (!deleting) {
+        charIndex++;
+        setText(current.slice(0, charIndex));
+
+        if (charIndex === current.length) {
+          deleting = true;
+          timeoutId = setTimeout(tick, pause);
+          return;
+        }
+      } else {
+        charIndex--;
+        setText(current.slice(0, charIndex));
+
+        if (charIndex === 0) {
+          deleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+        }
+      }
+
+      timeoutId = setTimeout(tick, deleting ? deletingSpeed : typingSpeed);
+    }
+
+    timeoutId = setTimeout(tick, typingSpeed);
+    return () => clearTimeout(timeoutId);
+  }, [words, typingSpeed, deletingSpeed, pause]);
+
+  return text;
+}
 
 function LinkedInIcon({ size = 17 }: { size?: number }) {
   return (
@@ -95,6 +149,8 @@ const stackLogos = [
 ];
 
 export default function Hero() {
+  const typed = useTypewriter(roles);
+
   return (
     <section
       id="top"
@@ -117,21 +173,37 @@ export default function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08 }}
-            className="max-w-4xl text-5xl font-semibold leading-[0.98] tracking-[-0.06em] sm:text-6xl lg:text-8xl"
+            className="text-2xl font-semibold tracking-[-0.03em] sm:text-3xl"
           >
-            Building software that turns{" "}
-            <span className="text-gradient">ideas into products.</span>
+            Yosef Mekonnen
           </motion.h1>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.16 }}
-            className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]"
+            className="glass card mt-6 max-w-md overflow-hidden"
           >
-            Yosef Mekonnen — Computer Science Co-op student at UPEI. Full-stack
-            development, backend systems, and AI.
-          </motion.p>
+            <div className="flex gap-1.5 border-b border-[var(--line)] bg-black/20 px-4 py-3">
+              <span className="h-2.5 w-2.5 rounded-full bg-white/25" />
+              <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+              <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
+            </div>
+
+            <div className="p-5 font-mono text-sm leading-8">
+              <p className="text-[var(--muted)]">
+                <span className="select-none">$ </span>whoami
+              </p>
+              <p>yosef_mekonnen</p>
+              <p className="mt-2">
+                <span className="text-violet-400">const</span> role ={" "}
+                <span className="text-emerald-400">
+                  &quot;{typed}
+                  <span className="animate-pulse">|</span>&quot;
+                </span>
+              </p>
+            </div>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0 }}
