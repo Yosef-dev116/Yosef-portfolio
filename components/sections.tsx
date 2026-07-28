@@ -7,8 +7,6 @@ import {
   BookOpen,
   Code2,
   GraduationCap,
-  Mail,
-  MapPin,
   Trophy,
 } from "lucide-react";
 
@@ -36,22 +34,6 @@ function GitHubIcon({ size = 18, className = "" }: SocialIconProps) {
   );
 }
 
-function LinkedInIcon({ size = 18, className = "" }: SocialIconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-      focusable="false"
-      className={className}
-    >
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.047c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.371 4.267 5.455v6.286ZM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124ZM7.119 20.452H3.555V9H7.12v11.452ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003Z" />
-    </svg>
-  );
-}
-
 export function About() {
   const aboutCards = [
     {
@@ -68,24 +50,6 @@ export function About() {
       title: "Values",
       description:
         "I believe in continuous learning, taking ownership, writing clean code, and building software that genuinely helps people solve real problems.",
-    },
-  ];
-
-  const timeline = [
-    {
-      year: "Jan 2025",
-      description:
-        "Started my Bachelor of Science in Computer Science (Co-op) with a minor in Mathematics at UPEI.",
-    },
-    {
-      year: "Today",
-      description:
-        "Building portfolio projects while strengthening my skills in software engineering, web development, databases, algorithms, and AI.",
-    },
-    {
-      year: "Dec 2028",
-      description:
-        "Expected graduation and preparing for a career as a software engineer focused on building impactful technology.",
     },
   ];
 
@@ -108,20 +72,6 @@ export function About() {
               </p>
             </Reveal>
           ))}
-        </div>
-
-        <div className="mt-10 border-l border-[var(--line)] pl-6">
-          <p className="eyebrow">My Journey</p>
-
-          <div className="mt-6 grid gap-8 md:grid-cols-3">
-            {timeline.map((item) => (
-              <div key={item.year}>
-                <p className="font-bold text-violet-400">{item.year}</p>
-
-                <p className="mt-2 text-[var(--muted)]">{item.description}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
@@ -556,108 +506,53 @@ export function Extras() {
 export function Contact() {
   return (
     <section id="contact" className="section">
-      <div className="container glass card overflow-hidden">
-        <div className="grid lg:grid-cols-2">
-          <div className="bg-gradient-to-br from-violet-500/20 to-cyan-500/5 p-8 md:p-12">
-            <p className="eyebrow">Contact</p>
+      <div className="container max-w-2xl">
+        <SectionTitle
+          eyebrow="Contact"
+          title="Let's build something meaningful."
+          copy="For co-op roles, collaborations, and ambitious product ideas — send a message and I'll get back to you."
+        />
 
-            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] md:text-5xl">
-              Let&apos;s build something meaningful.
-            </h2>
+        <form action="/api/contact" method="post" className="space-y-6">
+          <label className="block text-sm">
+            Name
+            <input
+              required
+              name="name"
+              type="text"
+              autoComplete="name"
+              className="mt-2 w-full border-b border-[var(--line)] bg-transparent py-2 outline-none transition focus:border-violet-400"
+            />
+          </label>
 
-            <p className="mt-5 leading-7 text-[var(--muted)]">
-              For co-op roles, collaborations, and ambitious product ideas.
-            </p>
+          <label className="block text-sm">
+            Email
+            <input
+              required
+              type="email"
+              name="email"
+              autoComplete="email"
+              className="mt-2 w-full border-b border-[var(--line)] bg-transparent py-2 outline-none transition focus:border-violet-400"
+            />
+          </label>
 
-            <div className="mt-8 space-y-4 text-sm">
-              <a
-                href="mailto:yoseffmek116@gmail.com"
-                className="flex items-center gap-3 transition hover:text-violet-400"
-              >
-                <Mail size={18} aria-hidden="true" />
-                yoseffmek116@gmail.com
-              </a>
+          <label className="block text-sm">
+            Message
+            <textarea
+              required
+              name="message"
+              rows={4}
+              className="mt-2 w-full resize-y border-b border-[var(--line)] bg-transparent py-2 outline-none transition focus:border-violet-400"
+            />
+          </label>
 
-              <a
-                href="mailto:ymekonnen@upei.ca"
-                className="flex items-center gap-3 transition hover:text-violet-400"
-              >
-                <Mail size={18} aria-hidden="true" />
-                ymekonnen@upei.ca
-              </a>
-
-              <a
-                href="https://www.linkedin.com/in/yosefmekonnen"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 transition hover:text-violet-400"
-              >
-                <LinkedInIcon size={18} />
-                LinkedIn
-              </a>
-
-              <a
-                href="https://github.com/Yosef-dev116"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 transition hover:text-violet-400"
-              >
-                <GitHubIcon size={18} />
-                GitHub
-              </a>
-
-              <p className="flex items-center gap-3">
-                <MapPin size={18} aria-hidden="true" />
-                Charlottetown, PE, Canada
-              </p>
-            </div>
-          </div>
-
-          <form
-            action="/api/contact"
-            method="post"
-            className="space-y-5 p-8 md:p-12"
+          <button
+            type="submit"
+            className="focus-ring rounded-xl bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
           >
-            <label className="block text-sm">
-              Name
-              <input
-                required
-                name="name"
-                type="text"
-                autoComplete="name"
-                className="mt-2 w-full rounded-xl border border-[var(--line)] bg-transparent p-3 outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-400/20"
-              />
-            </label>
-
-            <label className="block text-sm">
-              Email
-              <input
-                required
-                type="email"
-                name="email"
-                autoComplete="email"
-                className="mt-2 w-full rounded-xl border border-[var(--line)] bg-transparent p-3 outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-400/20"
-              />
-            </label>
-
-            <label className="block text-sm">
-              Message
-              <textarea
-                required
-                name="message"
-                rows={5}
-                className="mt-2 w-full resize-y rounded-xl border border-[var(--line)] bg-transparent p-3 outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-400/20"
-              />
-            </label>
-
-            <button
-              type="submit"
-              className="w-full rounded-xl bg-white p-3 font-semibold text-black transition hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-offset-2 focus:ring-offset-black"
-            >
-              Send message
-            </button>
-          </form>
-        </div>
+            Send message
+          </button>
+        </form>
       </div>
     </section>
   );
