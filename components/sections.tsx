@@ -2,37 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import {
-  ArrowUpRight,
-  BookOpen,
-  Code2,
-  GraduationCap,
-  Trophy,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 import { projects, skills } from "@/data/site";
 import { Pill, Reveal, SectionTitle } from "./ui";
-
-type SocialIconProps = {
-  size?: number;
-  className?: string;
-};
-
-function GitHubIcon({ size = 18, className = "" }: SocialIconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-      focusable="false"
-      className={className}
-    >
-      <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.071 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.091-.647.349-1.088.635-1.338-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.58 9.58 0 0 1 2.504.337c1.909-1.295 2.747-1.026 2.747-1.026.546 1.378.203 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.337 4.695-4.566 4.943.359.31.678.921.678 1.856 0 1.34-.012 2.421-.012 2.75 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.523 2 12 2Z" />
-    </svg>
-  );
-}
 
 export function About() {
   const aboutCards = [
@@ -101,15 +74,6 @@ export function Skills() {
                 {skillItems.map((skill) => (
                   <Pill key={skill}>{skill}</Pill>
                 ))}
-              </div>
-
-              <div className="mt-6 h-1 overflow-hidden rounded-full bg-white/5">
-                <div
-                  style={{
-                    width: `${Math.min(68 + index * 4, 96)}%`,
-                  }}
-                  className="h-full rounded-full bg-gradient-to-r from-violet-500 to-cyan-400"
-                />
               </div>
             </Reveal>
           ))}
@@ -243,129 +207,6 @@ export function Projects() {
   );
 }
 
-export function Experience() {
-  const experienceItems = [
-    {
-      icon: GraduationCap,
-      title: "Bachelor of Science — Computer Science (Co-op)",
-      description:
-        "University of Prince Edward Island • January 2025 – December 2028 (Expected). Pursuing a major in Computer Science with a minor in Mathematics while preparing for software engineering co-op opportunities.",
-    },
-    {
-      icon: Code2,
-      title: "Technical Foundation",
-      description:
-        "Completed coursework in Data Structures & Algorithms, Programming Practices, Computer Programming Languages, Web Development, Computer Organization & Architecture, Linear Algebra, Calculus, and Combinatorics. Currently studying Machine Learning, Database Systems, Computer Communications, Operating Systems, and Differential Equations.",
-    },
-    {
-      icon: Trophy,
-      title: "Current Focus",
-      description:
-        "Building a portfolio of real-world software projects using React, Next.js, FastAPI, Python, TypeScript, SQL, and AI technologies while strengthening software engineering and problem-solving skills.",
-    },
-    {
-      icon: BookOpen,
-      title: "Career Goal",
-      description:
-        "Seeking software engineering and technology co-op opportunities where I can contribute to meaningful products, learn from experienced engineers, and continue growing as a developer.",
-    },
-  ];
-
-  return (
-    <section id="experience" className="section bg-white/[0.02]">
-      <div className="container">
-        <SectionTitle
-          eyebrow="Education & Experience"
-          title="Building a strong foundation for a career in software engineering."
-          copy="I'm continuously developing my technical knowledge through university coursework, independent projects, and hands-on software development."
-        />
-
-        <div className="grid gap-5 md:grid-cols-2">
-          {experienceItems.map(({ icon: Icon, title, description }) => (
-            <Reveal key={title} className="glass card p-7">
-              <Icon className="text-violet-400" aria-hidden="true" />
-
-              <h3 className="mt-5 text-xl font-semibold">{title}</h3>
-
-              <p className="mt-3 leading-7 text-[var(--muted)]">
-                {description}
-              </p>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-export function GithubSection() {
-  return (
-    <section id="github" className="section">
-      <div className="container">
-        <SectionTitle
-          eyebrow="GitHub"
-          title="Projects, progress, and code in public."
-          copy="My GitHub profile documents the software I build, the technologies I am learning, and the progress I make as a developer."
-        />
-
-        <Reveal className="glass card overflow-hidden">
-          <div className="grid gap-8 p-7 md:p-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
-            <div>
-              <p className="eyebrow">Developer Profile</p>
-
-              <h3 className="mt-4 text-3xl font-semibold tracking-[-0.03em]">
-                Follow my development journey on GitHub.
-              </h3>
-
-              <p className="mt-5 max-w-2xl leading-7 text-[var(--muted)]">
-                Explore my repositories, coursework, experiments, and full-stack
-                projects. I use GitHub to document what I build, improve my
-                code, and share my progress over time.
-              </p>
-
-              <div className="mt-7 flex flex-wrap gap-3">
-                <a
-                  href="https://github.com/Yosef-dev116"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
-                >
-                  View GitHub Profile
-                  <GitHubIcon className="ml-2" size={16} />
-                </a>
-
-                <a
-                  href="https://github.com/Yosef-dev116?tab=repositories"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-xl border border-[var(--line)] px-5 py-3 text-sm transition hover:border-white/30 hover:bg-white/5"
-                >
-                  Browse Repositories
-                  <ArrowUpRight className="ml-2" size={16} aria-hidden="true" />
-                </a>
-              </div>
-            </div>
-
-            <div className="rounded-2xl border border-white/10 bg-black/20 p-6">
-              <GitHubIcon size={42} className="text-violet-400" />
-
-              <p className="mt-5 text-sm text-[var(--muted)]">
-                GitHub username
-              </p>
-
-              <p className="mt-1 text-xl font-semibold">@Yosef-dev116</p>
-
-              <div className="mt-6 space-y-3 text-sm text-[var(--muted)]">
-                <p>Software projects and experiments</p>
-                <p>Coursework and technical practice</p>
-                <p>Ongoing learning and development</p>
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
 export function Extras() {
   const achievements = [
     {

@@ -168,12 +168,6 @@ export default function Hero() {
                 sizes="(min-width: 1024px) 12rem, 45vw"
                 className="object-cover"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-3">
-                <p className="text-sm font-medium text-white">Yosef Mekonnen</p>
-                <p className="mt-0.5 text-xs text-white/75">
-                  Software Engineer · AI Builder
-                </p>
-              </div>
             </div>
 
             <a

@@ -2,15 +2,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X, Sun, Moon, Command, ArrowUp } from "lucide-react";
 import { motion, useScroll, useSpring } from "motion/react";
-const links = [
-  "about",
-  "skills",
-  "projects",
-  "experience",
-  "github",
-  "blog",
-  "contact",
-];
+const links = ["about", "skills", "projects", "blog", "contact"];
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   const [light, setLight] = useState(false);

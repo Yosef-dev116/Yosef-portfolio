@@ -1,13 +1,5 @@
 import Hero from "@/components/hero";
-import {
-  About,
-  Skills,
-  Projects,
-  Experience,
-  GithubSection,
-  Extras,
-  Contact,
-} from "@/components/sections";
+import { About, Skills, Projects, Extras, Contact } from "@/components/sections";
 export default function Home() {
   return (
     <main>
@@ -15,8 +7,6 @@ export default function Home() {
       <About />
       <Skills />
       <Projects />
-      <Experience />
-      <GithubSection />
       <Extras />
       <Contact />
       <footer className="border-t border-[var(--line)] px-5 py-8">
