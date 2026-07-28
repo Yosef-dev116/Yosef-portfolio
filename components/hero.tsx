@@ -123,6 +123,48 @@ const floatingChips = [
   { id: "num2", top: "90%", left: "62%", duration: 5, delay: 0.5, text: "10" },
 ];
 
+const pictureFloatingIcons = [
+  {
+    id: "fastapi",
+    top: "-9%",
+    left: "-16%",
+    size: 42,
+    duration: 5.5,
+    delay: 0.2,
+    svg: (
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="11" fill="#05998b" />
+        <path d="M13 3 6 13h5l-1 8 8-11h-6z" fill="#fff" />
+      </svg>
+    ),
+  },
+  {
+    id: "openai",
+    top: "-11%",
+    left: "58%",
+    size: 40,
+    duration: 6,
+    delay: 0.6,
+    svg: (
+      <svg viewBox="0 0 24 24">
+        <g fill="none" stroke="#e7e8ec" strokeWidth="1.8">
+          <circle cx="12" cy="6.2" r="2.1" />
+          <circle cx="16.8" cy="9.1" r="2.1" />
+          <circle cx="16.8" cy="14.9" r="2.1" />
+          <circle cx="12" cy="17.8" r="2.1" />
+          <circle cx="7.2" cy="14.9" r="2.1" />
+          <circle cx="7.2" cy="9.1" r="2.1" />
+        </g>
+      </svg>
+    ),
+  },
+];
+
+const pictureFloatingChips = [
+  { id: "commit", top: "34%", left: "84%", duration: 5, delay: 0.4, text: "git commit" },
+  { id: "percent", top: "80%", left: "-20%", duration: 6, delay: 0.9, text: "100%" },
+];
+
 export default function Hero() {
   return (
     <section
@@ -178,8 +220,47 @@ export default function Hero() {
         >
           <div className="absolute -inset-10 -z-10 rounded-full bg-violet-500/15 blur-3xl" />
 
+          {pictureFloatingIcons.map((item) => (
+            <motion.div
+              key={item.id}
+              style={{ top: item.top, left: item.left, width: item.size, height: item.size }}
+              className="glass absolute z-20 grid place-items-center rounded-2xl"
+              animate={{ y: [0, -14, 0], rotate: [0, 4, 0] }}
+              transition={{
+                duration: item.duration,
+                delay: item.delay,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <span style={{ width: item.size * 0.5, height: item.size * 0.5 }}>
+                {item.svg}
+              </span>
+            </motion.div>
+          ))}
+
+          {pictureFloatingChips.map((item) => (
+            <motion.div
+              key={item.id}
+              style={{ top: item.top, left: item.left }}
+              className="glass absolute z-20 rounded-xl px-3 py-1.5 font-mono text-sm text-[var(--muted)]"
+              animate={{ y: [0, -10, 0] }}
+              transition={{
+                duration: item.duration,
+                delay: item.delay,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              {item.text}
+            </motion.div>
+          ))}
+
           <div className="grid grid-cols-2 grid-rows-[auto_repeat(3,auto)_auto] gap-3">
             <p className="col-start-1 row-start-1 font-semibold">Yosef Mekonnen</p>
+
+            <div className="pointer-events-none col-start-1 row-span-3 row-start-2 rotate-[-7deg] rounded-2xl bg-gradient-to-br from-violet-500/25 to-sky-400/10" />
+            <div className="pointer-events-none col-start-1 row-span-3 row-start-2 rotate-[5deg] rounded-2xl bg-gradient-to-br from-sky-400/20 to-emerald-400/10" />
 
             <div className="glass card relative col-start-1 row-span-3 row-start-2 overflow-hidden">
               <Image

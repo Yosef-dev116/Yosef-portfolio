@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ArrowUpRight, GraduationCap, Heart, Target } from "lucide-react";
+import { ArrowUpRight, GraduationCap, Heart, Target, Trophy } from "lucide-react";
 
 import { projects, skills } from "@/data/site";
 import { Pill, Reveal, SectionTitle } from "./ui";
@@ -285,8 +285,6 @@ export function Extras() {
       issuer: "World Taekwondo",
       year: "2020",
       category: "Martial Arts",
-      description:
-        "Earned a second-degree black belt after years of disciplined training, technical development, and perseverance.",
       credentialUrl: "/certificates/world-taekwondo-2nd-dan.jpg",
       credentialType: "certificate",
     },
@@ -295,8 +293,6 @@ export function Extras() {
       issuer: "World Taekwondo",
       year: "2018",
       category: "Martial Arts",
-      description:
-        "Recognized by World Taekwondo for achieving the first Poom rank through formal training and examination.",
       credentialUrl: "/certificates/world-taekwondo-1st-poom.jpg",
       credentialType: "certificate",
     },
@@ -305,8 +301,6 @@ export function Extras() {
       issuer: "STEMpower",
       year: "2022",
       category: "Engineering",
-      description:
-        "Participated in an engineering fair focused on applying scientific thinking, creativity, and practical problem-solving.",
       credentialUrl: "/certificates/stempower-engineering-fair.jpg",
       credentialType: "verification",
     },
@@ -315,8 +309,6 @@ export function Extras() {
       issuer: "Wavemakers CTi3",
       year: "Credential",
       category: "Professional Skills",
-      description:
-        "Developed structured approaches for analyzing challenges, evaluating possible solutions, and taking effective action.",
       credentialUrl:
         "https://credentials.wavemakers.network/verifier?id=f114dfa6-5690-445f-b95e-c8cfa2fa3f9d&dbl=to",
       credentialType: "verification",
@@ -326,8 +318,6 @@ export function Extras() {
       issuer: "Wavemakers CTi3",
       year: "Credential",
       category: "Professional Skills",
-      description:
-        "Strengthened the ability to adapt, remain focused, and continue progressing through challenges and uncertainty.",
       credentialUrl:
         "https://credentials.wavemakers.network/verifier?id=76b718b7-8111-475a-bfad-f4629e9aadd3&dbl=to",
       credentialType: "verification",
@@ -337,8 +327,6 @@ export function Extras() {
       issuer: "Wavemakers CTi3",
       year: "Credential",
       category: "Professional Skills",
-      description:
-        "Built greater awareness of communication, collaboration, emotional intelligence, and responsible decision-making.",
       credentialUrl:
         "https://credentials.wavemakers.network/verifier?id=421238e5-5a87-465c-bb25-4ca48e785633&dbl=to",
       credentialType: "verification",
@@ -348,8 +336,6 @@ export function Extras() {
       issuer: "Microsoft Learn",
       year: "2026",
       category: "Cloud Computing",
-      description:
-        "Completed the Microsoft Learn module introducing cloud computing concepts, cloud service models, and deployment models.",
       credentialUrl:
         "https://learn.microsoft.com/api/achievements/share/en-us/Yosef-2665/4CHBYCMK?sharingId=73F701D390F916BC",
       credentialType: "verification",
@@ -357,8 +343,14 @@ export function Extras() {
   ];
 
   return (
-    <section id="achievements" className="section bg-white/[0.02]">
-      <div className="container">
+    <section id="achievements" className="section relative overflow-hidden bg-white/[0.02]">
+      <Trophy
+        className="pointer-events-none absolute -right-16 -top-16 text-white/[0.04]"
+        size={340}
+        aria-hidden="true"
+        strokeWidth={1}
+      />
+      <div className="container relative">
         <SectionTitle
           eyebrow="Beyond the Classroom"
           title="Certifications & achievements."
@@ -370,28 +362,22 @@ export function Extras() {
           and martial arts.
         </p>
 
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-x-8 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
           {achievements.map((achievement) => (
-            <Reveal
-              key={`${achievement.title}-${achievement.issuer}`}
-              className="glass card flex h-full flex-col p-7"
-            >
+            <Reveal key={`${achievement.title}-${achievement.issuer}`}>
               <div className="flex items-start justify-between gap-4">
                 <p className="eyebrow">{achievement.category}</p>
-
-                <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-[var(--muted)]">
+                <span className="text-xs text-[var(--muted)]">
                   {achievement.year}
                 </span>
               </div>
 
-              <h3 className="mt-5 text-xl font-semibold leading-snug">
+              <h3 className="mt-3 text-lg font-semibold leading-snug">
                 {achievement.title}
               </h3>
 
-              <p className="mt-2 text-sm font-medium">{achievement.issuer}</p>
-
-              <p className="mt-5 flex-1 leading-7 text-[var(--muted)]">
-                {achievement.description}
+              <p className="mt-1 text-sm text-[var(--muted)]">
+                {achievement.issuer}
               </p>
 
               {achievement.credentialUrl && (
@@ -399,7 +385,7 @@ export function Extras() {
                   href={achievement.credentialUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-medium transition hover:text-violet-400"
+                  className="mt-3 inline-flex items-center gap-2 text-sm font-medium transition hover:text-violet-400"
                 >
                   {achievement.credentialType === "verification"
                     ? "Verify Credential"
