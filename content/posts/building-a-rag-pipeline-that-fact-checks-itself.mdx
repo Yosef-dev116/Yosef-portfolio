@@ -1,0 +1,88 @@
+---
+title: "Building a RAG pipeline that fact-checks itself"
+date: "2026-07-28"
+summary: "How I built a hybrid retrieval system for FastAPI's docs, and why I added a second model call whose only job is to catch the first one lying."
+---
+
+For a weekend project I built a question-answering system over FastAPI's own
+tutorial docs. You type a question, it finds the relevant sections, and it
+answers with citations. The part I'm actually proud of isn't the answering
+part. It's that every citation gets checked by a second model call before you
+ever see it.
+
+## The problem with plain semantic search
+
+I started with the obvious approach: embed the question, embed every doc
+chunk, return whatever's closest. It worked okay for conceptual questions,
+but it kept missing stuff that felt like it should be easy. I'd ask about
+`BackgroundTasks` and sometimes it would pull up a section about middleware
+instead of the actual `BackgroundTasks` page. Turns out "meaning" isn't
+really what a function name is about, so embeddings alone kind of miss the
+point when you're searching for an exact term.
+
+So I added a second, much dumber retriever on top: BM25, which is just
+keyword search. It doesn't understand anything, it literally just counts how
+many words overlap, but that's exactly what you want when someone types a
+real function name into the search box. Then I combined the two rankings
+using something called Reciprocal Rank Fusion, which I had to look up. Each
+result gets a score of `1 / (60 + rank)` added up across both lists, so
+something both retrievers agree on wins, but something only one of them
+found still gets a fair shot instead of getting buried.
+
+## Why "cite your sources" wasn't enough for me
+
+Just telling a model to add citations doesn't mean the citations are actually
+true. It can attach `[2]` to a claim just because chunk 2 is roughly on
+topic, without that chunk actually backing up the specific thing being said.
+That felt worse to me than no citation at all, because it looks trustworthy
+when it isn't.
+
+So after the answer gets generated, I run a second, separate model call that
+rereads every cited chunk against the exact claim it's attached to and just
+asks: does this text actually support this claim? Not "is this related,"
+but "does this literally say what the answer says it says."
+
+This actually caught a real mistake, not something I made up for the blog
+post. I asked "how do I declare a request body using a Pydantic model?" and
+the answer cited two sections: FastAPI's general intro to request bodies,
+and a more specific page about combining a path parameter with a request
+body. Both are technically about request bodies. But the claim was
+specifically about that path-parameter-plus-body combo, and the general
+intro page doesn't cover that part at all. The verification step caught it.
+It confirmed the specific page and flagged the general one as not actually
+supporting that claim. That's basically the whole point of adding this step.
+It's not just rubber-stamping whatever the first model cited, it's actually
+checking.
+
+## I didn't just trust it, I tested it
+
+I wrote 18 questions by hand to test this against: 15 real questions about
+path params, request bodies, error handling, JWT auth, CORS, testing, SQL
+databases, file uploads, and middleware, plus 3 questions that are on
+purpose not covered by the docs at all, just to see if it would honestly say
+"I don't know" instead of making something up.
+
+Here's how it did:
+
+| Metric | Score |
+|---|---|
+| Correctness (expected facts present) | 100% |
+| Faithfulness (citations that passed verification) | 86% |
+| Citation accuracy (cited the right section) | 100% |
+| Correctly said "I don't know" | 100% |
+
+The 86% is the number I actually trust. It's not 100%, and honestly if it
+were, I'd assume my test questions were too easy.
+
+## What I skipped
+
+This was a weekend, not a sprint, so I cut a few things: cross-encoder
+reranking, comparing different chunking strategies, and wrapping the whole
+thing in a proper API. None of that would have taught me much I didn't
+already learn from the parts I kept: combining two kinds of search, citing
+sources, actually verifying those citations, and testing all of it with
+real numbers instead of just eyeballing a few answers and calling it done.
+
+**Stack:** Python, OpenAI (`text-embedding-3-small` + `gpt-4o-mini`),
+ChromaDB, `rank_bm25`, Streamlit. Live demo and the full writeup are in the
+[Projects](/#projects) section above.
