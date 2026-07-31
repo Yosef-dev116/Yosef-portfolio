@@ -1,15 +1,25 @@
 import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SiteShell from "@/components/site-shell";
 import { Analytics } from "@vercel/analytics/next";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 export const metadata: Metadata = {
   metadataBase: new URL("https://yosefmekonnen.dev"),
   title: {
-    default: "Yosef Mekonnen — Software Engineer",
+    default: "Yosef Mekonnen",
     template: "%s | Yosef Mekonnen",
   },
-  description:
-    "Computer Science Co-op student building AI-powered full-stack software, backend systems, and thoughtful digital products.",
+  description: "Software Engineer",
   keywords: [
     "Yosef Mekonnen",
     "Software Engineer",
@@ -18,15 +28,15 @@ export const metadata: Metadata = {
     "UPEI",
   ],
   openGraph: {
-    title: "Yosef Mekonnen — Software Engineer",
-    description: "AI-powered software that solves real problems.",
+    title: "Yosef Mekonnen",
+    description: "Software Engineer",
     type: "website",
     url: "/",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yosef Mekonnen — Software Engineer",
-    description: "AI-powered software that solves real problems.",
+    title: "Yosef Mekonnen",
+    description: "Software Engineer",
   },
   robots: { index: true, follow: true },
 };
@@ -37,7 +47,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <div className="noise" />
         <SiteShell>{children}</SiteShell>
         <Analytics />

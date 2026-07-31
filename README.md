@@ -1,123 +1,47 @@
 # Yosef Mekonnen Portfolio
 
-A modern, responsive portfolio website showcasing my projects, technical skills, certifications, and experience as a Computer Science Co-op student at the University of Prince Edward Island.
+Personal site and blog for Yosef Mekonnen — CS Co-op student at UPEI. Built with Next.js App Router, with an MDX-based blog and a Resend-powered contact form.
 
-🌐 **Live Website:** https://yosefmekonnen.dev
+Live: https://yosefmekonnen.dev
 
----
+## Stack
 
-## ✨ Features
+Next.js 16, React, TypeScript, Tailwind CSS, Motion, Resend, deployed on Vercel.
 
-- Responsive design optimized for desktop, tablet, and mobile
-- Modern UI built with Next.js App Router and React
-- Interactive projects showcase with GitHub and live demo links
-- Downloadable résumé
-- Certifications and achievements section
-- Contact form powered by Resend
-- SEO optimization with sitemap, robots.txt, Open Graph metadata, and icons
-- Custom domain deployment with Vercel
-- Accessible navigation and reduced-motion support
-
----
-
-## 🛠️ Built With
-
-- Next.js 16
-- React
-- TypeScript
-- Tailwind CSS
-- Motion
-- Lucide React
-- Resend
-- Vercel
-
----
-
-## 🚀 Getting Started
-
-### Clone the repository
+## Getting started
 
 ```bash
 git clone https://github.com/Yosef-dev116/Yosef-portfolio.git
 cd Yosef-portfolio
-```
-
-### Install dependencies
-
-```bash
 npm install
-```
-
-### Start the development server
-
-```bash
 npm run dev
 ```
 
-Open your browser and visit:
+Visit `http://localhost:3000`.
+
+## Structure
 
 ```
-http://localhost:3000
+app/            routes (App Router) — home, /blog, /blog/[slug], contact API
+components/     hero, page sections, blog UI, site shell
+content/posts/  blog posts as MDX
+lib/posts.ts    reads and parses posts from content/posts/
+data/site.ts    project list and skills data
+public/         static assets (resume, images, certificates)
 ```
 
----
+## Contact form
 
-## 📂 Project Structure
-
-```
-app/
-components/
-public/
-lib/
-styles/
-```
-
----
-
-## 📧 Contact
-
-The contact form is powered by **Resend**.
-
-To run locally, create a `.env.local` file:
+Uses Resend. To run the form locally, add to `.env.local`:
 
 ```env
 RESEND_API_KEY=your_resend_api_key
 ```
 
----
+## Deployment
 
-## 🚀 Deployment
+Deployed on Vercel with automatic deployments from `main`.
 
-This project is deployed on **Vercel** with automatic deployments from the `main` branch.
+## License
 
-**Production:**  
-👉 https://yosefmekonnen.dev
-
----
-
-## 📈 Performance & Accessibility
-
-- Server-rendered App Router pages
-- Responsive and mobile-first design
-- Semantic HTML and accessible navigation
-- Keyboard-accessible components
-- Reduced-motion support
-- Optimized metadata and Open Graph images
-- Automatic sitemap and robots.txt generation
-- Minimal third-party JavaScript
-
----
-
-## 📬 Connect With Me
-
-🌐 **Portfolio:** https://yosefmekonnen.dev
-
-💼 **LinkedIn:** https://linkedin.com/in/yosefmekonnen
-
-💻 **GitHub:** https://github.com/Yosef-dev116
-
----
-
-## 📄 License
-
-This project is open source and available under the MIT License.
+MIT

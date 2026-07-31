@@ -61,52 +61,9 @@ export const projects = [
 export const skills = {
   Languages: ["Python", "Java", "JavaScript", "TypeScript", "SQL"],
 
-  Frontend: [
-    "React",
-    "Next.js",
-    "HTML",
-    "CSS",
-    "Tailwind CSS",
-    "Responsive Design",
-  ],
+  Frameworks: ["React", "Next.js", "FastAPI"],
 
-  Backend: [
-    "FastAPI",
-    "REST APIs",
-    "Object-Oriented Programming",
-    "API Development",
-    "Server-Side Development",
-  ],
+  Tools: ["Git", "GitHub", "Cursor", "VS Code", "Docker", "PostgreSQL"],
 
-  "Computer Science": [
-    "Data Structures",
-    "Algorithms",
-    "Programming Practices",
-    "Computer Architecture",
-    "Database Fundamentals",
-  ],
-
-  Tools: ["Git", "GitHub", "Cursor", "VS Code", "Debugging", "Testing"],
-
-  "AI & Data": [
-    "Machine Learning Fundamentals",
-    "Prompt Engineering",
-    "Data Analysis",
-    "AI-Assisted Development",
-  ],
-
-  Mathematics: [
-    "Linear Algebra",
-    "Calculus",
-    "Combinatorics",
-    "Differential Equations",
-  ],
-
-  "Currently Learning": [
-    "Machine Learning",
-    "Database Systems",
-    "Operating Systems",
-    "Computer Networks",
-    "Software Architecture",
-  ],
+  Learning: ["Machine Learning", "Cloud Computing", "Linux", "System Design"],
 };

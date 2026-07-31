@@ -2,13 +2,29 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ArrowUpRight, GraduationCap, Heart, Target, Trophy } from "lucide-react";
+import { ArrowUpRight, Mail, Trophy } from "lucide-react";
 
 import { projects, skills } from "@/data/site";
 import { Pill, Reveal, SectionTitle } from "./ui";
 
+function LinkedInIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.047c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.371 4.267 5.455v6.286ZM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124ZM7.119 20.452H3.555V9H7.12v11.452ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003Z" />
+    </svg>
+  );
+}
+
+function GitHubIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.071 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.091-.647.349-1.088.635-1.338-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.58 9.58 0 0 1 2.504.337c1.909-1.295 2.747-1.026 2.747-1.026.546 1.378.203 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.337 4.695-4.566 4.943.359.31.678.921.678 1.856 0 1.34-.012 2.421-.012 2.75 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.523 2 12 2Z" />
+    </svg>
+  );
+}
+
 function LangIcon({ name }: { name: string }) {
-  const className = "h-9 w-9 rounded-lg";
+  const className = "h-8 w-8 rounded-lg";
 
   switch (name) {
     case "Python":
@@ -67,46 +83,48 @@ function LangIcon({ name }: { name: string }) {
 }
 
 export function About() {
-  const aboutItems = [
-    {
-      title: "Journey",
-      icon: GraduationCap,
-      description:
-        "I began studying Computer Science at the University of Prince Edward Island in January 2025. Through the Co-op program and a minor in Mathematics, I'm building a strong foundation in software engineering, algorithms, and problem solving.",
-    },
-    {
-      title: "Goal",
-      icon: Target,
-      description:
-        "My goal is to become a software engineer who builds reliable, scalable, and intelligent software. I'm especially interested in backend development, full-stack applications, artificial intelligence, and cloud technologies.",
-    },
-    {
-      title: "Values",
-      icon: Heart,
-      description:
-        "I believe in continuous learning, taking ownership, writing clean code, and building software that genuinely helps people solve real problems.",
-    },
-  ];
-
   return (
     <section id="about" className="section">
       <div className="container">
-        <SectionTitle
-          eyebrow="About Me"
-          title="Learning every day. Building software that matters."
-          copy="I'm passionate about creating software that is practical, reliable, and enjoyable to use. Every project is an opportunity to improve my engineering skills, learn new technologies, and solve meaningful problems."
-        />
+        <div className="grid gap-14 md:grid-cols-2 md:gap-20">
+          <Reveal>
+            <p className="eyebrow mb-3">About</p>
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-[-.04em]">
+              I like solving problems that teach me something.
+            </h2>
 
-        <div className="grid gap-10 md:grid-cols-3">
-          {aboutItems.map((item) => (
-            <Reveal key={item.title}>
-              <item.icon className="text-violet-400" size={28} aria-hidden="true" />
-              <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
-              <p className="mt-3 leading-7 text-[var(--muted)]">
-                {item.description}
+            <div className="mt-6 space-y-5 text-lg leading-8 text-[var(--muted)]">
+              <p>
+                Most of what I&apos;ve learned came from building projects,
+                getting stuck, and figuring out why something wasn&apos;t
+                working.
               </p>
-            </Reveal>
-          ))}
+              <p>
+                Every mistake has helped me become a better developer, and
+                that&apos;s still how I learn today.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <div className="md:pt-2">
+              <h3 className="text-sm font-semibold">What matters to me</h3>
+              <ul className="mt-4 space-y-3 leading-7 text-[var(--muted)]">
+                <li>Building projects instead of just following tutorials</li>
+                <li>Writing code I can understand six months later</li>
+                <li>Improving a little with every project</li>
+              </ul>
+
+              <h3 className="mt-12 text-sm font-semibold">
+                Outside programming
+              </h3>
+              <p className="mt-4 leading-7 text-[var(--muted)]">
+                I&apos;ve practiced Taekwondo for years, and it&apos;s taught
+                me discipline, patience, and the importance of showing up
+                consistently.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -117,20 +135,15 @@ export function Skills() {
     <section id="skills" className="section bg-white/[0.02]">
       <div className="container">
         <SectionTitle
-          eyebrow="Capabilities"
-          title="A growing toolkit for building complete products."
+          eyebrow="Tools I Use"
+          title="The tools behind my projects."
+          copy="I choose tools based on the problem I'm trying to solve."
         />
 
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {Object.entries(skills).map(([category, skillItems], index) => (
+          {Object.entries(skills).map(([category, skillItems]) => (
             <Reveal key={category}>
-              <div className="mb-4 flex items-center justify-between gap-4">
-                <h3 className="font-semibold">{category}</h3>
-
-                <span className="text-xs text-[var(--muted)]">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-              </div>
+              <h3 className="mb-4 font-semibold">{category}</h3>
 
               {category === "Languages" ? (
                 <div className="flex flex-wrap gap-3">
@@ -139,6 +152,12 @@ export function Skills() {
                       <LangIcon name={skill} />
                       <span className="text-xs text-[var(--muted)]">{skill}</span>
                     </div>
+                  ))}
+                </div>
+              ) : category === "Learning" ? (
+                <div className="leading-7 text-[var(--muted)]">
+                  {skillItems.map((skill) => (
+                    <p key={skill}>{skill}</p>
                   ))}
                 </div>
               ) : (
@@ -451,6 +470,36 @@ export function Contact() {
             Send message
           </button>
         </form>
+
+        <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-[var(--line)] pt-8">
+          <a
+            href="https://github.com/Yosef-dev116"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="focus-ring inline-flex items-center gap-2 text-sm text-[var(--muted)] transition hover:text-[var(--text)]"
+          >
+            <GitHubIcon size={15} />
+            GitHub
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/yosefmekonnen"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="focus-ring inline-flex items-center gap-2 text-sm text-[var(--muted)] transition hover:text-[var(--text)]"
+          >
+            <LinkedInIcon size={15} />
+            LinkedIn
+          </a>
+
+          <a
+            href="mailto:yoseffmek116@gmail.com"
+            className="focus-ring inline-flex items-center gap-2 text-sm text-[var(--muted)] transition hover:text-[var(--text)]"
+          >
+            <Mail size={15} aria-hidden="true" />
+            Email
+          </a>
+        </div>
       </div>
     </section>
   );
