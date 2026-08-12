@@ -24,13 +24,15 @@ export function SectionTitle({
   eyebrow,
   title,
   copy,
+  className,
 }: {
   eyebrow: string;
   title: string;
   copy?: string;
+  className?: string;
 }) {
   return (
-    <div className="mb-12 max-w-3xl">
+    <div className={className ?? "mb-12 max-w-3xl"}>
       <p className="eyebrow mb-3">{eyebrow}</p>
       <h2 className="text-3xl md:text-5xl font-semibold tracking-[-.04em]">
         {title}

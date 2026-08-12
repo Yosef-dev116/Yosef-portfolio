@@ -89,7 +89,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
       <a
         href="#top"
         aria-label="Back to top"
-        className="fixed bottom-5 right-5 z-40 rounded-full glass p-3 focus-ring"
+        className="fixed bottom-5 right-5 z-40 rounded-full glass p-3 focus-ring sm:bottom-28"
       >
         <ArrowUp size={18} />
       </a>

@@ -12,10 +12,10 @@ export default function Home() {
       <Contact />
       <footer className="border-t border-[var(--line)] px-5 py-8">
         <div className="container flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm text-[var(--muted)]">
-          <p>© {new Date().getFullYear()} Yosef Mekonnen.</p>
+          <p>© {new Date().getFullYear()} Yosef Mekonnen</p>
           <p className="flex items-center gap-2">
             <MapPin size={15} aria-hidden="true" />
-            Charlottetown, PE, Canada
+            Charlottetown, PEI
           </p>
         </div>
       </footer>

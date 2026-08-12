@@ -1,27 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import { ArrowUpRight, Mail, Trophy } from "lucide-react";
+import { ArrowUpRight, Trophy } from "lucide-react";
 
 import { projects, skills } from "@/data/site";
 import { Pill, Reveal, SectionTitle } from "./ui";
-
-function LinkedInIcon({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.047c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.371 4.267 5.455v6.286ZM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124ZM7.119 20.452H3.555V9H7.12v11.452ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003Z" />
-    </svg>
-  );
-}
-
-function GitHubIcon({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.071 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.091-.647.349-1.088.635-1.338-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.58 9.58 0 0 1 2.504.337c1.909-1.295 2.747-1.026 2.747-1.026.546 1.378.203 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.337 4.695-4.566 4.943.359.31.678.921.678 1.856 0 1.34-.012 2.421-.012 2.75 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.523 2 12 2Z" />
-    </svg>
-  );
-}
 
 function LangIcon({ name }: { name: string }) {
   const className = "h-8 w-8 rounded-lg";
@@ -174,51 +157,17 @@ export function Skills() {
 }
 
 export function Projects() {
-  const [filter, setFilter] = useState("All");
-
-  const filters = ["All", "AI", "Data"];
-
-  const shownProjects = projects.filter(
-    (project) => filter === "All" || project.tag.includes(filter),
-  );
-
   return (
     <section id="projects" className="section">
       <div className="container">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionTitle
-            eyebrow="Selected work"
-            title="Projects designed as products."
-          />
-
-          <div
-            className="mb-12 flex flex-wrap gap-2"
-            aria-label="Project filters"
-          >
-            {filters.map((item) => {
-              const isActive = item === filter;
-
-              return (
-                <button
-                  key={item}
-                  type="button"
-                  onClick={() => setFilter(item)}
-                  aria-pressed={isActive}
-                  className={`rounded-full border border-[var(--line)] px-4 py-2 text-sm transition ${
-                    isActive
-                      ? "bg-white text-black"
-                      : "text-[var(--muted)] hover:border-white/30 hover:bg-white/5 hover:text-white"
-                  }`}
-                >
-                  {item}
-                </button>
-              );
-            })}
-          </div>
-        </div>
+        <SectionTitle
+          eyebrow="Projects"
+          title="Projects I've built."
+          copy="These are projects I've designed, built, and deployed while learning software engineering. Each one helped me solve a different problem and taught me something new."
+        />
 
         <div className="grid gap-6 sm:grid-cols-2">
-          {shownProjects.map((project) => (
+          {projects.map((project) => (
             <Reveal
               key={project.slug}
               className="glass card flex h-full flex-col overflow-hidden"
@@ -233,9 +182,8 @@ export function Projects() {
                 />
               </div>
 
-              <div className="flex flex-1 flex-col p-6 md:p-7">
-                <div className="flex items-center justify-between gap-4">
-                  <p className="eyebrow">{project.tag}</p>
+              <div className="flex flex-1 flex-col px-6 pb-6 pt-3 md:px-7 md:pb-7 md:pt-3">
+                <div className="flex items-center justify-end gap-4">
                   <span className="text-xs text-[var(--muted)]">
                     {project.year}
                   </span>
@@ -245,9 +193,18 @@ export function Projects() {
                   {project.title}
                 </h3>
 
-                <p className="mt-3 line-clamp-3 leading-7 text-[var(--muted)]">
-                  {project.summary}
+                <p className="mt-3 leading-7 text-[var(--muted)]">
+                  {project.whyBuilt}
                 </p>
+
+                <h4 className="mt-5 text-sm font-semibold">
+                  Tech highlights
+                </h4>
+                <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm leading-6 text-[var(--muted)]">
+                  {project.highlights.map((highlight) => (
+                    <li key={highlight}>{highlight}</li>
+                  ))}
+                </ul>
 
                 <div className="mt-5 flex flex-wrap gap-2">
                   {project.stack.map((technology) => (
@@ -264,7 +221,7 @@ export function Projects() {
                       aria-label={`Open live demo for ${project.title}`}
                       className="inline-flex items-center gap-1 text-violet-400 transition hover:text-violet-300"
                     >
-                      Live
+                      Live Demo
                       <ArrowUpRight size={14} aria-hidden="true" />
                     </a>
                   )}
@@ -277,7 +234,7 @@ export function Projects() {
                       aria-label={`Open GitHub repository for ${project.title}`}
                       className="inline-flex items-center gap-1 transition hover:text-violet-300"
                     >
-                      Code
+                      Source Code
                       <ArrowUpRight size={14} aria-hidden="true" />
                     </a>
                   )}
@@ -304,60 +261,18 @@ export function Extras() {
       issuer: "World Taekwondo",
       year: "2020",
       category: "Martial Arts",
+      description:
+        "Years of training taught me discipline, consistency, and the importance of showing up every day, even when progress is slow.",
       credentialUrl: "/certificates/world-taekwondo-2nd-dan.jpg",
-      credentialType: "certificate",
     },
     {
-      title: "1st Poom Certificate",
-      issuer: "World Taekwondo",
-      year: "2018",
-      category: "Martial Arts",
-      credentialUrl: "/certificates/world-taekwondo-1st-poom.jpg",
-      credentialType: "certificate",
-    },
-    {
-      title: "Engineering Fair Certificate of Participation",
+      title: "Engineering Fair",
       issuer: "STEMpower",
       year: "2022",
       category: "Engineering",
+      description:
+        "Built and presented an engineering project while collaborating with other students and sharing ideas with other teams.",
       credentialUrl: "/certificates/stempower-engineering-fair.jpg",
-      credentialType: "verification",
-    },
-    {
-      title: "Active Problem Solving",
-      issuer: "Wavemakers CTi3",
-      year: "Credential",
-      category: "Professional Skills",
-      credentialUrl:
-        "https://credentials.wavemakers.network/verifier?id=f114dfa6-5690-445f-b95e-c8cfa2fa3f9d&dbl=to",
-      credentialType: "verification",
-    },
-    {
-      title: "Resilience",
-      issuer: "Wavemakers CTi3",
-      year: "Credential",
-      category: "Professional Skills",
-      credentialUrl:
-        "https://credentials.wavemakers.network/verifier?id=76b718b7-8111-475a-bfad-f4629e9aadd3&dbl=to",
-      credentialType: "verification",
-    },
-    {
-      title: "Social and Emotional Learning",
-      issuer: "Wavemakers CTi3",
-      year: "Credential",
-      category: "Professional Skills",
-      credentialUrl:
-        "https://credentials.wavemakers.network/verifier?id=421238e5-5a87-465c-bb25-4ca48e785633&dbl=to",
-      credentialType: "verification",
-    },
-    {
-      title: "Describe Cloud Computing",
-      issuer: "Microsoft Learn",
-      year: "2026",
-      category: "Cloud Computing",
-      credentialUrl:
-        "https://learn.microsoft.com/api/achievements/share/en-us/Yosef-2665/4CHBYCMK?sharingId=73F701D390F916BC",
-      credentialType: "verification",
     },
   ];
 
@@ -371,17 +286,16 @@ export function Extras() {
       />
       <div className="container relative">
         <SectionTitle
-          eyebrow="Beyond the Classroom"
-          title="Certifications & achievements."
+          eyebrow="Beyond Software"
+          title="Beyond software."
         />
 
         <p className="mb-10 max-w-3xl text-lg leading-8 text-[var(--muted)]">
-          Accomplishments that reflect discipline, continuous learning,
-          problem-solving, and personal growth across technology, engineering,
-          and martial arts.
+          The experiences outside programming that have shaped how I learn,
+          solve problems, and approach challenges.
         </p>
 
-        <div className="grid gap-x-8 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-x-8 gap-y-7 sm:grid-cols-2">
           {achievements.map((achievement) => (
             <Reveal key={`${achievement.title}-${achievement.issuer}`}>
               <div className="flex items-start justify-between gap-4">
@@ -399,6 +313,10 @@ export function Extras() {
                 {achievement.issuer}
               </p>
 
+              <p className="mt-3 leading-7 text-[var(--muted)]">
+                {achievement.description}
+              </p>
+
               {achievement.credentialUrl && (
                 <a
                   href={achievement.credentialUrl}
@@ -406,9 +324,7 @@ export function Extras() {
                   rel="noopener noreferrer"
                   className="mt-3 inline-flex items-center gap-2 text-sm font-medium transition hover:text-violet-400"
                 >
-                  {achievement.credentialType === "verification"
-                    ? "Verify Credential"
-                    : "View Certificate"}
+                  View Certificate
                   <ArrowUpRight size={16} aria-hidden="true" />
                 </a>
               )}
@@ -422,15 +338,16 @@ export function Extras() {
 
 export function Contact() {
   return (
-    <section id="contact" className="section">
-      <div className="container max-w-2xl">
+    <section id="contact" className="section" style={{ paddingTop: "8.5rem" }}>
+      <div className="container">
         <SectionTitle
           eyebrow="Contact"
-          title="Let's build something meaningful."
-          copy="For co-op roles, collaborations, and ambitious product ideas — send a message and I'll get back to you."
+          title="Let's build something together."
+          copy="Whether it's a Fall 2026 co-op opportunity, a project idea, or just a conversation, I'd love to hear from you."
+          className="mb-[38px] max-w-3xl"
         />
 
-        <form action="/api/contact" method="post" className="space-y-6">
+        <form action="/api/contact" method="post" className="max-w-[720px] space-y-6">
           <label className="block text-sm">
             Name
             <input
@@ -467,37 +384,34 @@ export function Contact() {
             type="submit"
             className="focus-ring rounded-xl bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
           >
-            Send message
+            Send Message
           </button>
         </form>
 
-        <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-[var(--line)] pt-8">
+        <div className="mt-10 max-w-[720px] flex flex-wrap items-center gap-x-9 gap-y-4 border-t border-[var(--line)] pt-8">
           <a
-            href="https://github.com/Yosef-dev116"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="focus-ring inline-flex items-center gap-2 text-sm text-[var(--muted)] transition hover:text-[var(--text)]"
+            href="mailto:yoseffmek116@gmail.com"
+            className="focus-ring text-sm text-[var(--muted)] transition hover:text-[var(--text)]"
           >
-            <GitHubIcon size={15} />
-            GitHub
+            Email
           </a>
 
           <a
             href="https://www.linkedin.com/in/yosefmekonnen"
             target="_blank"
             rel="noopener noreferrer"
-            className="focus-ring inline-flex items-center gap-2 text-sm text-[var(--muted)] transition hover:text-[var(--text)]"
+            className="focus-ring text-sm text-[var(--muted)] transition hover:text-[var(--text)]"
           >
-            <LinkedInIcon size={15} />
             LinkedIn
           </a>
 
           <a
-            href="mailto:yoseffmek116@gmail.com"
-            className="focus-ring inline-flex items-center gap-2 text-sm text-[var(--muted)] transition hover:text-[var(--text)]"
+            href="https://github.com/Yosef-dev116"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="focus-ring text-sm text-[var(--muted)] transition hover:text-[var(--text)]"
           >
-            <Mail size={15} aria-hidden="true" />
-            Email
+            GitHub
           </a>
         </div>
       </div>
