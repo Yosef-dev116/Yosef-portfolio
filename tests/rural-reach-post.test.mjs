@@ -29,12 +29,26 @@ test("publishes the Rural Reach award story with its event details and photos", 
     "Fahad Rahman Khan",
     "Alessandro Pacetti",
     "Zoe",
+    "mentors",
+    "organizers",
+    "judges",
+    "Atlantic Veterinary College",
+    "University of Prince Edward Island",
     "Spark Tank 5.0",
     "October 5",
     "Perth-Andover",
+    "possible pilot",
   ]) {
     assert.match(content, new RegExp(detail));
   }
+
+  assert.match(
+    content,
+    /holding a ceremonial cheque for the Most Animal Welfare Impact award/,
+  );
+  assert.equal(content.match(/<figcaption>/g)?.length, 3);
+  assert.equal(content.match(/loading="lazy"/g)?.length, 2);
+  assert.equal(content.match(/decoding="async"/g)?.length, 2);
 
   for (const imagePath of [
     "/blog/rural-reach/team-award.jpg",
