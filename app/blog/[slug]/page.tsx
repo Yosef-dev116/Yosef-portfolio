@@ -34,7 +34,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <main className="section pt-32">
-      <div className="container max-w-3xl">
+      <div className="container post-container">
         <p className="eyebrow">{formatPostDate(post.date)}</p>
         <h1 className="mt-4 text-4xl font-semibold sm:text-5xl">
           {post.title}

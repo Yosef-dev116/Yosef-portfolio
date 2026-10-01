@@ -74,6 +74,9 @@ body {
   max-width: 1180px;
   margin: auto;
 }
+.post-container {
+  max-width: 48rem;
+}
 .eyebrow {
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -159,6 +162,28 @@ body {
   padding-left: 1em;
   color: var(--muted);
   font-style: italic;
+}
+.post-content figure {
+  margin: 2em 0;
+}
+.post-content figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.post-content figure img.award-photo {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center 60%;
+}
+.post-content figcaption {
+  margin-top: 0.75em;
+  color: var(--muted);
+  font-size: 0.85em;
+  line-height: 1.5;
+  text-align: center;
 }
 .post-content table {
   width: 100%;
