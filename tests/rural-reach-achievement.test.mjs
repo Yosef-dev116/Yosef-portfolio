@@ -17,3 +17,22 @@ test("features Rural Reach as a text-only achievement linked to its article", ()
   assert.equal(ruralReach.href, "/blog/rural-reach-animal-welfare-hackathon");
   assert.equal("image" in ruralReach, false);
 });
+
+test("keeps certificate links opening safely in a new tab", () => {
+  const certificates = site.achievements.filter(
+    (achievement) => achievement.linkLabel === "View Certificate",
+  );
+  assert.deepEqual(
+    certificates.map(({ href, openInNewTab }) => ({ href, openInNewTab })),
+    [
+      {
+        href: "/certificates/world-taekwondo-2nd-dan.jpg",
+        openInNewTab: true,
+      },
+      {
+        href: "/certificates/stempower-engineering-fair.jpg",
+        openInNewTab: true,
+      },
+    ],
+  );
+});

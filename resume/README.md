@@ -11,3 +11,6 @@ python3 -m venv .context/resume-venv
 
 The generator is intentionally separate from the website build, so production
 deployments continue to serve the committed PDF without installing Python.
+
+The bundled Latin Modern font files are distributed under the GUST Font License
+included in `resume/fonts/GUST-FONT-LICENSE.TXT`.

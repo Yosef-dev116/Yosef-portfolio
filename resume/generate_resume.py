@@ -11,6 +11,7 @@ from reportlab.lib.enums import TA_CENTER, TA_LEFT
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import inch
+from reportlab.pdfbase import pdfmetrics
 from reportlab.platypus import (
     BaseDocTemplate,
     Frame,
@@ -25,6 +26,34 @@ from reportlab.platypus import (
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = ROOT / "public" / "resume.pdf"
 BLOG_URL = "https://yosefmekonnen.dev/blog/rural-reach-animal-welfare-hackathon"
+FONT_DIR = Path(__file__).resolve().parent / "fonts"
+
+regular_face = pdfmetrics.EmbeddedType1Face(
+    FONT_DIR / "lmr10.afm",
+    FONT_DIR / "lmr10.pfb",
+)
+bold_face = pdfmetrics.EmbeddedType1Face(
+    FONT_DIR / "lmbx10.afm",
+    FONT_DIR / "lmbx10.pfb",
+)
+for face in (regular_face, bold_face):
+    # Latin Modern's AFM metrics use decimal values; ReportLab leaves them as
+    # strings even though its Paragraph engine expects numbers.
+    face.ascent = float(face.ascent)
+    face.descent = float(face.descent)
+pdfmetrics.registerTypeFace(regular_face)
+pdfmetrics.registerTypeFace(bold_face)
+pdfmetrics.registerFont(
+    pdfmetrics.Font("LMRoman10", "LMRoman10-Regular", "WinAnsiEncoding")
+)
+pdfmetrics.registerFont(
+    pdfmetrics.Font("LMRoman10-Bold", "LMRoman10-Bold", "WinAnsiEncoding")
+)
+pdfmetrics.registerFontFamily(
+    "LMRoman10",
+    normal="LMRoman10",
+    bold="LMRoman10-Bold",
+)
 
 
 def paragraph(text: str, style: ParagraphStyle, **kwargs) -> Paragraph:
@@ -38,9 +67,9 @@ def build_resume(output_path: Path) -> None:
     body = ParagraphStyle(
         "ResumeBody",
         parent=styles["BodyText"],
-        fontName="Times-Roman",
-        fontSize=9.35,
-        leading=10.65,
+        fontName="LMRoman10",
+        fontSize=9.85,
+        leading=11.45,
         textColor=colors.HexColor("#111111"),
         spaceAfter=0,
     )
@@ -52,26 +81,26 @@ def build_resume(output_path: Path) -> None:
     name = ParagraphStyle(
         "Name",
         parent=body_center,
-        fontName="Times-Bold",
-        fontSize=23,
-        leading=23,
-        spaceAfter=0.5,
+        fontName="LMRoman10-Bold",
+        fontSize=22.5,
+        leading=22.5,
+        spaceAfter=1,
     )
     section = ParagraphStyle(
         "Section",
         parent=body,
-        fontName="Times-Bold",
-        fontSize=13.2,
-        leading=14,
-        spaceBefore=3.3,
-        spaceAfter=1,
+        fontName="LMRoman10-Bold",
+        fontSize=13.7,
+        leading=14.5,
+        spaceBefore=4,
+        spaceAfter=1.2,
     )
     item_title = ParagraphStyle(
         "ItemTitle",
         parent=body,
-        fontName="Times-Bold",
-        fontSize=10.2,
-        leading=11,
+        fontName="LMRoman10-Bold",
+        fontSize=10.45,
+        leading=11.55,
     )
     bullet = ParagraphStyle(
         "Bullet",
@@ -79,6 +108,8 @@ def build_resume(output_path: Path) -> None:
         leftIndent=9,
         firstLineIndent=-7,
         bulletIndent=0,
+        bulletFontName="LMRoman10",
+        bulletFontSize=9.85,
         spaceBefore=0.25,
     )
 
@@ -92,6 +123,7 @@ def build_resume(output_path: Path) -> None:
         title="Yosef Mekonnen Resume",
         author="Yosef Mekonnen",
         subject="Computer Science co-op resume",
+        invariant=True,
     )
     frame = Frame(
         doc.leftMargin,
@@ -178,10 +210,30 @@ def build_resume(output_path: Path) -> None:
 
     add_section("Education")
     story.append(
-        paragraph(
-            "<b>BSc Computer Science (Co-op), Minor in Mathematics</b> - University of Prince Edward Island "
-            "&nbsp;&nbsp; <b>Expected: Dec 2028</b>",
-            body,
+        Table(
+            [
+                [
+                    paragraph(
+                        "<b>BSc Computer Science (Co-op), Minor in Mathematics</b> - "
+                        "University of Prince Edward Island",
+                        body,
+                    ),
+                    paragraph("<b>Expected: Dec 2028</b>", body),
+                ]
+            ],
+            colWidths=[doc.width - 1.75 * inch, 1.75 * inch],
+            style=TableStyle(
+                [
+                    ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                    ("ALIGN", (1, 0), (1, 0), "RIGHT"),
+                    ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                    ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+                    ("RIGHTPADDING", (0, 0), (0, 0), 8),
+                    ("LEFTPADDING", (1, 0), (1, 0), 8),
+                    ("TOPPADDING", (0, 0), (-1, -1), 0),
+                    ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
+                ]
+            ),
         )
     )
     story.append(
