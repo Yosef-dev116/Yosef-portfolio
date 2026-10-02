@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
+import MdxImage from "@/components/mdx-image";
 import { getPostBySlug, getPostSlugs, formatPostDate } from "@/lib/posts";
 
 type PageProps = {
@@ -44,6 +45,7 @@ export default async function Page({ params }: PageProps) {
           <MDXRemote
             source={post.content}
             options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+            components={{ MdxImage }}
           />
         </div>
       </div>
