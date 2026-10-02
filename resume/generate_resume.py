@@ -194,7 +194,7 @@ def build_resume(output_path: Path) -> None:
         )
 
     def add_bullet(text: str) -> None:
-        story.append(paragraph(text, bullet, bulletText="•"))
+        story.append(paragraph(text, bullet, bulletText="-"))
 
     add_section("Profile")
     story.append(

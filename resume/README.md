@@ -9,6 +9,12 @@ python3 -m venv .context/resume-venv
 .context/resume-venv/bin/python resume/generate_resume.py
 ```
 
+Run the resume generation tests after changing the source or font assets:
+
+```bash
+.context/resume-venv/bin/python -m unittest discover -v
+```
+
 The generator is intentionally separate from the website build, so production
 deployments continue to serve the committed PDF without installing Python.
 

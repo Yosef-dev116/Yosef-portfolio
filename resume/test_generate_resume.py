@@ -31,6 +31,36 @@ class ResumeGenerationTests(unittest.TestCase):
                 base_fonts,
             )
 
+            for font in reader.pages[0]["/Resources"]["/Font"].values():
+                font_object = font.get_object()
+                if "LMRoman10" not in str(font_object.get("/BaseFont")):
+                    continue
+                descriptor = font_object["/FontDescriptor"].get_object()
+                self.assertTrue(
+                    any(
+                        key in descriptor
+                        for key in ("/FontFile", "/FontFile2", "/FontFile3")
+                    ),
+                    descriptor,
+                )
+
+    def test_text_layer_contains_no_control_characters(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "resume.pdf"
+            build_resume(output)
+
+            text = "\n".join(
+                page.extract_text() or "" for page in PdfReader(output).pages
+            )
+            controls = [
+                character
+                for character in text
+                if ord(character) == 127
+                or (ord(character) < 32 and character not in "\n\t")
+            ]
+
+            self.assertEqual(controls, [])
+
     def test_generates_identical_pdf_bytes(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             first = Path(directory) / "first.pdf"
