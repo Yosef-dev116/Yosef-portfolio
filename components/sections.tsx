@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { ArrowUpRight, Trophy } from "lucide-react";
 
-import { projects, skills } from "@/data/site";
+import { achievements, projects, skills } from "@/data/site";
 import { Pill, Reveal, SectionTitle } from "./ui";
 
 function LangIcon({ name }: { name: string }) {
@@ -255,27 +255,6 @@ export function Projects() {
 }
 
 export function Extras() {
-  const achievements = [
-    {
-      title: "2nd Dan Black Belt",
-      issuer: "World Taekwondo",
-      year: "2020",
-      category: "Martial Arts",
-      description:
-        "Years of training taught me discipline, consistency, and the importance of showing up every day, even when progress is slow.",
-      credentialUrl: "/certificates/world-taekwondo-2nd-dan.jpg",
-    },
-    {
-      title: "Engineering Fair",
-      issuer: "STEMpower",
-      year: "2022",
-      category: "Engineering",
-      description:
-        "Built and presented an engineering project while collaborating with other students and sharing ideas with other teams.",
-      credentialUrl: "/certificates/stempower-engineering-fair.jpg",
-    },
-  ];
-
   return (
     <section id="achievements" className="section relative overflow-hidden bg-white/[0.02]">
       <Trophy
@@ -317,14 +296,16 @@ export function Extras() {
                 {achievement.description}
               </p>
 
-              {achievement.credentialUrl && (
+              {achievement.href && (
                 <a
-                  href={achievement.credentialUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={achievement.href}
+                  target={achievement.openInNewTab ? "_blank" : undefined}
+                  rel={
+                    achievement.openInNewTab ? "noopener noreferrer" : undefined
+                  }
                   className="mt-3 inline-flex items-center gap-2 text-sm font-medium transition hover:text-violet-400"
                 >
-                  View Certificate
+                  {achievement.linkLabel}
                   <ArrowUpRight size={16} aria-hidden="true" />
                 </a>
               )}

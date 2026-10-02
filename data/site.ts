@@ -147,3 +147,38 @@ export const skills = {
 
   Learning: ["Machine Learning", "Cloud Computing", "Linux", "System Design"],
 };
+
+export const achievements = [
+  {
+    title: "Rural Reach",
+    issuer: "UPEI Animal Welfare Hackathon",
+    year: "2026",
+    category: "Innovation",
+    description:
+      "Co-developed a rural veterinary care co-op with a multidisciplinary team and won the Most Animal Welfare Impact award.",
+    href: "/blog/rural-reach-animal-welfare-hackathon",
+    linkLabel: "Read the story",
+  },
+  {
+    title: "2nd Dan Black Belt",
+    issuer: "World Taekwondo",
+    year: "2020",
+    category: "Martial Arts",
+    description:
+      "Years of training taught me discipline, consistency, and the importance of showing up every day, even when progress is slow.",
+    href: "/certificates/world-taekwondo-2nd-dan.jpg",
+    linkLabel: "View Certificate",
+    openInNewTab: true,
+  },
+  {
+    title: "Engineering Fair",
+    issuer: "STEMpower",
+    year: "2022",
+    category: "Engineering",
+    description:
+      "Built and presented an engineering project while collaborating with other students and sharing ideas with other teams.",
+    href: "/certificates/stempower-engineering-fair.jpg",
+    linkLabel: "View Certificate",
+    openInNewTab: true,
+  },
+];
