@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
+import MdxImage from "@/components/mdx-image";
 import { getPostBySlug, getPostSlugs, formatPostDate } from "@/lib/posts";
 
 type PageProps = {
@@ -34,7 +35,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <main className="section pt-32">
-      <div className="container max-w-3xl">
+      <div className="container post-container">
         <p className="eyebrow">{formatPostDate(post.date)}</p>
         <h1 className="mt-4 text-4xl font-semibold sm:text-5xl">
           {post.title}
@@ -44,6 +45,7 @@ export default async function Page({ params }: PageProps) {
           <MDXRemote
             source={post.content}
             options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+            components={{ MdxImage }}
           />
         </div>
       </div>

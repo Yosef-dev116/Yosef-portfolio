@@ -1,11 +1,13 @@
 {
   "name": "yosef-mekonnen-portfolio",
   "version": "1.0.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "test": "node --test",
     "lint": "next lint",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
