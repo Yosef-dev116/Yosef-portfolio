@@ -1,6 +1,13 @@
 import { MapPin } from "lucide-react";
 import Hero from "@/components/hero";
-import { About, Skills, Projects, Extras, Contact } from "@/components/sections";
+import { Contributions } from "@/components/contributions";
+import {
+  About,
+  Skills,
+  Projects,
+  Extras,
+  Contact,
+} from "@/components/sections";
 export default function Home() {
   return (
     <main>
@@ -8,6 +15,7 @@ export default function Home() {
       <About />
       <Skills />
       <Projects />
+      <Contributions />
       <Extras />
       <Contact />
       <footer className="border-t border-[var(--line)] px-5 py-8">
