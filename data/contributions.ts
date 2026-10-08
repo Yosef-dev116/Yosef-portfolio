@@ -19,6 +19,24 @@ export type Contribution = {
 
 export const contributions: Contribution[] = [
   {
+    slug: "react-sketch-canvas-touch-scroll",
+    project: "react-sketch-canvas",
+    kind: "Pull request to an open-source React library",
+    status: "Open",
+    date: "Oct 2026",
+    title: "Two-finger scrolling on touch screens.",
+    description:
+      "A drawing canvas that set touch-action: none trapped phone and tablet users inside tall canvases. I fixed the maintainer's open issue so one finger still draws while two fingers scroll or pinch-zoom the page.",
+    highlights: [
+      "Tested each touch-action value in real Chromium before writing code, then changed the default to pinch-zoom",
+      "Added an allowMultiTouchScroll prop so apps can keep the old behavior",
+      "Playwright touch tests, unit tests, docs and a changeset; checked on a real iPhone",
+    ],
+    stack: ["React", "TypeScript", "Playwright", "Vitest"],
+    href: "https://github.com/vinothpandian/react-sketch-canvas/pull/224",
+    hrefLabel: "View pull request",
+  },
+  {
     slug: "fieldrow",
     project: "Fieldrow",
     kind: "Open-source mobile client for Baserow",
