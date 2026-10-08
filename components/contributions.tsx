@@ -93,7 +93,7 @@ function ContributionCard({ item }: { item: Contribution }) {
     <Reveal className="h-full">
       <article
         onMouseMove={spotlight}
-        className="glass card spotlight grid h-full gap-8 overflow-hidden p-6 md:p-8 lg:grid-cols-[1fr_auto] lg:items-center"
+        className={`glass card spotlight grid h-full gap-8 overflow-hidden p-6 md:p-8 ${item.visual ? "lg:grid-cols-[1fr_auto] lg:items-center" : ""}`}
       >
         <div className="relative z-10">
           <div className="flex flex-wrap items-center gap-3">
