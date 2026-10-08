@@ -115,7 +115,7 @@ export default function Hero() {
               </p>
 
               <p className="text-sm text-[var(--muted)]">
-                Summer 2027 Co-op
+                AI-First Developer at PEI IT Alliance
               </p>
 
               <p className="text-sm text-[var(--muted)]">
