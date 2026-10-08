@@ -52,5 +52,7 @@ export const contributions: Contribution[] = [
     ],
     stack: ["React Native", "Expo Router", "TypeScript", "Baserow API", "Jest"],
     visual: "scanner",
+    href: "https://github.com/Yosef-dev116/fieldrow",
+    hrefLabel: "View repository",
   },
 ];
