@@ -60,10 +60,6 @@ pdfmetrics.registerFontFamily(
 )
 
 
-def paragraph(text: str, style: ParagraphStyle, **kwargs) -> Paragraph:
-    return Paragraph(text, style, **kwargs)
-
-
 def build_resume(output_path: Path) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -142,13 +138,13 @@ def build_resume(output_path: Path) -> None:
     doc.addPageTemplates(PageTemplate(id="resume", frames=[frame]))
 
     story = [
-        paragraph("Yosef Mekonnen", name),
-        paragraph(
+        Paragraph("Yosef Mekonnen", name),
+        Paragraph(
             'Charlottetown, PE &nbsp;-&nbsp; (782) 377-5265 &nbsp;-&nbsp; '
             '<link href="mailto:ymekonnen@upei.ca" color="#111111">ymekonnen@upei.ca</link>',
             body_center,
         ),
-        paragraph(
+        Paragraph(
             '<link href="https://yosefmekonnen.dev" color="#111111">yosefmekonnen.dev</link>'
             ' &nbsp;-&nbsp; '
             '<link href="https://github.com/Yosef-dev116" color="#111111">github.com/Yosef-dev116</link>'
@@ -160,7 +156,7 @@ def build_resume(output_path: Path) -> None:
     ]
 
     def add_section(title: str) -> None:
-        story.append(paragraph(title, section))
+        story.append(Paragraph(title, section))
         story.append(
             Table(
                 [[""]],
@@ -188,7 +184,7 @@ def build_resume(output_path: Path) -> None:
         story.append(Spacer(1, space_before))
         story.append(
             Table(
-                [[paragraph(title, item_title), paragraph(date, body)]],
+                [[Paragraph(title, item_title), Paragraph(date, body)]],
                 colWidths=[doc.width - date_width * inch, date_width * inch],
                 style=TableStyle(
                     [
@@ -204,11 +200,11 @@ def build_resume(output_path: Path) -> None:
         )
 
     def add_bullet(text: str) -> None:
-        story.append(paragraph(text, bullet, bulletText="-"))
+        story.append(Paragraph(text, bullet, bulletText="-"))
 
     add_section("Profile")
     story.append(
-        paragraph(
+        Paragraph(
             "Computer Science co-op student at UPEI, minoring in Mathematics, with experience building "
             "full-stack and AI-assisted software in Python, TypeScript, JavaScript, and Java. Currently an "
             "AI-First Developer at PEI IT Alliance. Actively seeking Summer 2027 co-op opportunities.",
@@ -221,12 +217,12 @@ def build_resume(output_path: Path) -> None:
         Table(
             [
                 [
-                    paragraph(
+                    Paragraph(
                         "<b>BSc Computer Science (Co-op), Minor in Mathematics</b> - "
                         "University of Prince Edward Island",
                         body,
                     ),
-                    paragraph("<b>Expected: Dec 2028</b>", body),
+                    Paragraph("<b>Expected: Dec 2028</b>", body),
                 ]
             ],
             colWidths=[doc.width - 1.75 * inch, 1.75 * inch],
@@ -245,7 +241,7 @@ def build_resume(output_path: Path) -> None:
         )
     )
     story.append(
-        paragraph(
+        Paragraph(
             "<b>Coursework:</b> Data Structures &amp; Algorithms, OOP, Database Systems, Web Programming, "
             "Linear Algebra, Calculus, Differential Equations",
             body,
@@ -255,12 +251,12 @@ def build_resume(output_path: Path) -> None:
     add_section("Technical Skills")
     story.extend(
         [
-            paragraph("<b>Languages:</b> Python, TypeScript, JavaScript, Java, SQL, HTML, CSS", body),
-            paragraph(
+            Paragraph("<b>Languages:</b> Python, TypeScript, JavaScript, Java, SQL, HTML, CSS", body),
+            Paragraph(
                 "<b>Frameworks &amp; Tools:</b> React, Next.js, Node.js, Express, FastAPI, PostgreSQL, REST APIs, Git, GitHub",
                 body,
             ),
-            paragraph(
+            Paragraph(
                 "<b>AI &amp; Data:</b> OpenAI API, Vercel AI SDK, RAG, ChromaDB, BM25, Recharts, Zod",
                 body,
             ),
@@ -350,7 +346,7 @@ def build_resume(output_path: Path) -> None:
 
     add_section("Availability")
     story.append(
-        paragraph(
+        Paragraph(
             "Available full-time May - August 2027 &nbsp;-&nbsp; Charlottetown, PE &nbsp;-&nbsp; "
             "Authorized to work in Canada on a co-op work permit through UPEI",
             body,
