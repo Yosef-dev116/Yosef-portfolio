@@ -1,0 +1,3 @@
+*.pdf binary
+resume/fonts/*.afm binary
+resume/fonts/*.pfb binary

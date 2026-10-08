@@ -15,38 +15,35 @@ export type Post = PostMeta & {
   content: string;
 };
 
-function readPostFile(slug: string) {
-  const filePath = path.join(POSTS_DIR, `${slug}.mdx`);
-  const raw = fs.readFileSync(filePath, "utf8");
-  return matter(raw);
-}
+export function getPostBySlug(slug: string): Post {
+  const raw = fs.readFileSync(path.join(POSTS_DIR, `${slug}.mdx`), "utf8");
+  const { data, content } = matter(raw);
 
-export function getAllPosts(): PostMeta[] {
-  if (!fs.existsSync(POSTS_DIR)) return [];
-
-  return fs
-    .readdirSync(POSTS_DIR)
-    .filter((file) => file.endsWith(".mdx"))
-    .map((file) => {
-      const slug = file.replace(/\.mdx$/, "");
-      const { data } = readPostFile(slug);
-
-      return {
-        slug,
-        title: data.title as string,
-        date: data.date as string,
-        summary: data.summary as string,
-      };
-    })
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
+  return {
+    slug,
+    title: data.title as string,
+    date: data.date as string,
+    summary: data.summary as string,
+    content,
+  };
 }
 
 export function getPostSlugs(): string[] {
   if (!fs.existsSync(POSTS_DIR)) return [];
+
   return fs
     .readdirSync(POSTS_DIR)
     .filter((file) => file.endsWith(".mdx"))
     .map((file) => file.replace(/\.mdx$/, ""));
+}
+
+export function getAllPosts(): PostMeta[] {
+  return getPostSlugs()
+    .map((slug) => {
+      const { content: _content, ...meta } = getPostBySlug(slug);
+      return meta;
+    })
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 export function formatPostDate(date: string): string {
@@ -58,16 +55,4 @@ export function formatPostDate(date: string): string {
     day: "numeric",
     timeZone: "UTC",
   });
-}
-
-export function getPostBySlug(slug: string): Post {
-  const { data, content } = readPostFile(slug);
-
-  return {
-    slug,
-    title: data.title as string,
-    date: data.date as string,
-    summary: data.summary as string,
-    content,
-  };
 }

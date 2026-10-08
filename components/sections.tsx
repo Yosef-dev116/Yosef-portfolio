@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { ArrowUpRight, Trophy } from "lucide-react";
 
-import { projects, skills } from "@/data/site";
+import { achievements, projects, skills } from "@/data/site";
 import { Pill, Reveal, SectionTitle } from "./ui";
 
 function LangIcon({ name }: { name: string }) {
@@ -28,7 +28,15 @@ function LangIcon({ name }: { name: string }) {
       return (
         <svg viewBox="0 0 24 24" className={className}>
           <rect width="24" height="24" rx="6" fill="#e11d1d" />
-          <text x="12" y="16" fontFamily="Arial, sans-serif" fontSize="9" fontWeight="700" fill="#fff" textAnchor="middle">
+          <text
+            x="12"
+            y="16"
+            fontFamily="Arial, sans-serif"
+            fontSize="9"
+            fontWeight="700"
+            fill="#fff"
+            textAnchor="middle"
+          >
             JV
           </text>
         </svg>
@@ -37,7 +45,15 @@ function LangIcon({ name }: { name: string }) {
       return (
         <svg viewBox="0 0 24 24" className={className}>
           <rect width="24" height="24" rx="6" fill="#f0db4f" />
-          <text x="12" y="16" fontFamily="Arial, sans-serif" fontSize="9" fontWeight="700" fill="#111" textAnchor="middle">
+          <text
+            x="12"
+            y="16"
+            fontFamily="Arial, sans-serif"
+            fontSize="9"
+            fontWeight="700"
+            fill="#111"
+            textAnchor="middle"
+          >
             JS
           </text>
         </svg>
@@ -46,7 +62,15 @@ function LangIcon({ name }: { name: string }) {
       return (
         <svg viewBox="0 0 24 24" className={className}>
           <rect width="24" height="24" rx="6" fill="#3178c6" />
-          <text x="12" y="16" fontFamily="Arial, sans-serif" fontSize="9" fontWeight="700" fill="#fff" textAnchor="middle">
+          <text
+            x="12"
+            y="16"
+            fontFamily="Arial, sans-serif"
+            fontSize="9"
+            fontWeight="700"
+            fill="#fff"
+            textAnchor="middle"
+          >
             TS
           </text>
         </svg>
@@ -55,7 +79,15 @@ function LangIcon({ name }: { name: string }) {
       return (
         <svg viewBox="0 0 24 24" className={className}>
           <rect width="24" height="24" rx="6" fill="#f29111" />
-          <text x="12" y="16" fontFamily="Arial, sans-serif" fontSize="7.5" fontWeight="700" fill="#fff" textAnchor="middle">
+          <text
+            x="12"
+            y="16"
+            fontFamily="Arial, sans-serif"
+            fontSize="7.5"
+            fontWeight="700"
+            fill="#fff"
+            textAnchor="middle"
+          >
             SQL
           </text>
         </svg>
@@ -102,8 +134,8 @@ export function About() {
                 Outside programming
               </h3>
               <p className="mt-4 leading-7 text-[var(--muted)]">
-                I&apos;ve practiced Taekwondo for years, and it&apos;s taught
-                me discipline, patience, and the importance of showing up
+                I&apos;ve practiced Taekwondo for years, and it&apos;s taught me
+                discipline, patience, and the importance of showing up
                 consistently.
               </p>
             </div>
@@ -131,9 +163,14 @@ export function Skills() {
               {category === "Languages" ? (
                 <div className="flex flex-wrap gap-3">
                   {skillItems.map((skill) => (
-                    <div key={skill} className="flex flex-col items-center gap-1.5">
+                    <div
+                      key={skill}
+                      className="flex flex-col items-center gap-1.5"
+                    >
                       <LangIcon name={skill} />
-                      <span className="text-xs text-[var(--muted)]">{skill}</span>
+                      <span className="text-xs text-[var(--muted)]">
+                        {skill}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -173,13 +210,40 @@ export function Projects() {
               className="glass card flex h-full flex-col overflow-hidden"
             >
               <div className="relative aspect-[16/10] w-full">
-                <Image
-                  src={project.image}
-                  alt={`${project.title} screenshot`}
-                  fill
-                  sizes="(min-width: 640px) 32rem, 90vw"
-                  className="object-cover object-top"
-                />
+                {project.image ? (
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} screenshot`}
+                    fill
+                    sizes="(min-width: 640px) 32rem, 90vw"
+                    className="object-cover object-top"
+                  />
+                ) : (
+                  <div
+                    className="flex h-full flex-col justify-between bg-[#f6efe5] p-7 text-[#261c16] md:p-9"
+                    aria-hidden="true"
+                  >
+                    <p className="text-xs font-semibold tracking-[0.24em] text-orange-700">
+                      GATHERBITE
+                    </p>
+                    <p className="max-w-md text-3xl font-semibold tracking-[-0.04em] md:text-4xl">
+                      Plan the order. Verify the constraints.
+                    </p>
+                    <div className="grid grid-cols-3 gap-2">
+                      {project.visualSteps?.map((step, index) => (
+                        <div
+                          key={step}
+                          className="rounded-lg border border-orange-950/10 bg-white/70 px-3 py-2 text-xs font-medium"
+                        >
+                          <span className="mr-1.5 text-orange-700">
+                            {index + 1}
+                          </span>
+                          {step}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div className="flex flex-1 flex-col px-6 pb-6 pt-3 md:px-7 md:pb-7 md:pt-3">
@@ -189,17 +253,13 @@ export function Projects() {
                   </span>
                 </div>
 
-                <h3 className="mt-3 text-2xl font-semibold">
-                  {project.title}
-                </h3>
+                <h3 className="mt-3 text-2xl font-semibold">{project.title}</h3>
 
                 <p className="mt-3 leading-7 text-[var(--muted)]">
                   {project.whyBuilt}
                 </p>
 
-                <h4 className="mt-5 text-sm font-semibold">
-                  Tech highlights
-                </h4>
+                <h4 className="mt-5 text-sm font-semibold">Tech highlights</h4>
                 <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm leading-6 text-[var(--muted)]">
                   {project.highlights.map((highlight) => (
                     <li key={highlight}>{highlight}</li>
@@ -255,29 +315,11 @@ export function Projects() {
 }
 
 export function Extras() {
-  const achievements = [
-    {
-      title: "2nd Dan Black Belt",
-      issuer: "World Taekwondo",
-      year: "2020",
-      category: "Martial Arts",
-      description:
-        "Years of training taught me discipline, consistency, and the importance of showing up every day, even when progress is slow.",
-      credentialUrl: "/certificates/world-taekwondo-2nd-dan.jpg",
-    },
-    {
-      title: "Engineering Fair",
-      issuer: "STEMpower",
-      year: "2022",
-      category: "Engineering",
-      description:
-        "Built and presented an engineering project while collaborating with other students and sharing ideas with other teams.",
-      credentialUrl: "/certificates/stempower-engineering-fair.jpg",
-    },
-  ];
-
   return (
-    <section id="achievements" className="section relative overflow-hidden bg-white/[0.02]">
+    <section
+      id="achievements"
+      className="section relative overflow-hidden bg-white/[0.02]"
+    >
       <Trophy
         className="pointer-events-none absolute -right-16 -top-16 text-white/[0.04]"
         size={340}
@@ -285,10 +327,7 @@ export function Extras() {
         strokeWidth={1}
       />
       <div className="container relative">
-        <SectionTitle
-          eyebrow="Beyond Software"
-          title="Beyond software."
-        />
+        <SectionTitle eyebrow="Beyond Software" title="Beyond software." />
 
         <p className="mb-10 max-w-3xl text-lg leading-8 text-[var(--muted)]">
           The experiences outside programming that have shaped how I learn,
@@ -317,14 +356,16 @@ export function Extras() {
                 {achievement.description}
               </p>
 
-              {achievement.credentialUrl && (
+              {achievement.href && (
                 <a
-                  href={achievement.credentialUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={achievement.href}
+                  target={achievement.openInNewTab ? "_blank" : undefined}
+                  rel={
+                    achievement.openInNewTab ? "noopener noreferrer" : undefined
+                  }
                   className="mt-3 inline-flex items-center gap-2 text-sm font-medium transition hover:text-violet-400"
                 >
-                  View Certificate
+                  {achievement.linkLabel}
                   <ArrowUpRight size={16} aria-hidden="true" />
                 </a>
               )}
@@ -343,11 +384,15 @@ export function Contact() {
         <SectionTitle
           eyebrow="Contact"
           title="Let's build something together."
-          copy="Whether it's a Fall 2026 co-op opportunity, a project idea, or just a conversation, I'd love to hear from you."
+          copy="Whether it's a Summer 2027 co-op opportunity, a project idea, or just a conversation, I'd love to hear from you."
           className="mb-[38px] max-w-3xl"
         />
 
-        <form action="/api/contact" method="post" className="max-w-[720px] space-y-6">
+        <form
+          action="/api/contact"
+          method="post"
+          className="max-w-[720px] space-y-6"
+        >
           <label className="block text-sm">
             Name
             <input
