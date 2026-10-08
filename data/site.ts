@@ -1,5 +1,31 @@
 export const projects = [
   {
+    slug: "gatherbite",
+    title: "GatherBite",
+    tag: "AI Agents + Verification + Full Stack",
+    year: "2026",
+    summary:
+      "An AI agent that plans group food orders from live restaurant data, then checks dietary coverage, quantity, budget, and item validity before the user proceeds.",
+    problem:
+      "A group order has to satisfy headcount, budget, dietary needs, store hours, and menu availability at the same time. A model can suggest an order, but it should not approve its own work.",
+    solution:
+      "The planner reads live store and menu data and proposes an order. A separate verifier reviews an evidence bundle, then a deterministic TypeScript gate checks serving capacity, dietary coverage, budget, and item references before anything reaches the cart.",
+    whyBuilt:
+      "Group food orders look simple until dietary needs, budget, serving size, and live menu data collide. GatherBite separates planning from approval and uses deterministic checks as the final gate.",
+    highlights: [
+      "Separate planner and verifier agents",
+      "Deterministic constraint checks",
+      "Fail-closed handling for missing evidence",
+      "Cart verification before and after execution",
+    ],
+    stack: ["Next.js", "TypeScript", "Vercel AI SDK", "Zod", "React"],
+    githubUrl: "https://github.com/Yosef-dev116/gatherbite",
+    image: null,
+    visualSteps: ["Plan", "Verify", "Decide"],
+    accent: "from-orange-500/25 to-amber-300/10",
+  },
+
+  {
     slug: "finance-dashboard",
     title: "Personal Finance Dashboard",
     tag: "FinTech + AI + Full Stack",
@@ -77,7 +103,8 @@ export const projects = [
     stack: ["Python", "OpenAI API", "ChromaDB", "BM25", "Streamlit"],
     githubUrl: "https://github.com/Yosef-dev116/fastapi-docs-rag",
     liveUrl: "https://yosef-fastapi-docs-rag.streamlit.app",
-    liveNote: "Free-tier app — may show a \"waking up\" screen for about a minute if idle.",
+    liveNote:
+      'Free-tier app — may show a "waking up" screen for about a minute if idle.',
     image: "/project-rag.jpg",
     accent: "from-amber-500/25 to-rose-500/10",
   },
@@ -102,10 +129,18 @@ export const projects = [
       "Org-wide contributor leaderboard",
       "FastAPI + Postgres backend",
     ],
-    stack: ["Python", "FastAPI", "PostgreSQL", "React", "TypeScript", "OpenAI API"],
+    stack: [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "React",
+      "TypeScript",
+      "OpenAI API",
+    ],
     githubUrl: "https://github.com/Yosef-dev116/Devproof",
     liveUrl: "https://devproof-xi.vercel.app",
-    liveNote: "Sign in with GitHub to try it — free-tier backend may take a minute to wake up if idle.",
+    liveNote:
+      "Sign in with GitHub to try it — free-tier backend may take a minute to wake up if idle.",
     image: "/project-devproof.jpg",
     accent: "from-sky-500/25 to-indigo-500/10",
   },

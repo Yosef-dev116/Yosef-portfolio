@@ -26,6 +26,10 @@ from reportlab.platypus import (
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = ROOT / "public" / "resume.pdf"
 BLOG_URL = "https://yosefmekonnen.dev/blog/rural-reach-animal-welfare-hackathon"
+PERSONAL_FINANCE_URL = "https://github.com/Yosef-dev116/personal-finance-dashboard"
+GATHERBITE_URL = "https://github.com/Yosef-dev116/gatherbite"
+ULTIMATE_TIC_TAC_TOE_URL = "https://github.com/Yosef-dev116/ultimate-tic-tac-toe"
+DEVPROOF_URL = "https://github.com/Yosef-dev116/Devproof"
 FONT_DIR = Path(__file__).resolve().parent / "fonts"
 
 regular_face = pdfmetrics.EmbeddedType1Face(
@@ -174,12 +178,18 @@ def build_resume(output_path: Path) -> None:
             )
         )
 
-    def add_item(title: str, date: str, *, space_before: float = 1.2) -> None:
+    def add_item(
+        title: str,
+        date: str,
+        *,
+        space_before: float = 1.2,
+        date_width: float = 1.05,
+    ) -> None:
         story.append(Spacer(1, space_before))
         story.append(
             Table(
                 [[paragraph(title, item_title), paragraph(date, body)]],
-                colWidths=[doc.width - 1.05 * inch, 1.05 * inch],
+                colWidths=[doc.width - date_width * inch, date_width * inch],
                 style=TableStyle(
                     [
                         ("VALIGN", (0, 0), (-1, -1), "TOP"),
@@ -199,11 +209,9 @@ def build_resume(output_path: Path) -> None:
     add_section("Profile")
     story.append(
         paragraph(
-            "Computer Science co-op student at UPEI with a Minor in Mathematics and hands-on experience "
-            "building AI-integrated full-stack applications, designing backend systems, and solving real-world "
-            "problems through software. Strong foundation in Python, JavaScript, and Java. Passionate about "
-            "artificial intelligence, backend development, and building products that genuinely help people. "
-            "Actively seeking Summer 2027 co-op opportunities.",
+            "Computer Science co-op student at UPEI, minoring in Mathematics, with experience building "
+            "full-stack and AI-assisted software in Python, TypeScript, JavaScript, and Java. Currently an "
+            "AI-First Developer at PEI IT Alliance. Actively seeking Summer 2027 co-op opportunities.",
             body,
         )
     )
@@ -247,49 +255,77 @@ def build_resume(output_path: Path) -> None:
     add_section("Technical Skills")
     story.extend(
         [
-            paragraph("<b>Languages:</b> Python, JavaScript, Java, SQL, HTML5, CSS3", body),
-            paragraph("<b>Frameworks &amp; Tools:</b> React, Node.js, Express, REST APIs, Git, GitHub, VS Code, IntelliJ IDEA", body),
-            paragraph("<b>AI &amp; Data:</b> OpenAI API integration, data analytics, category-based visualization, JSON data management", body),
-            paragraph("<b>Exploring:</b> Azure AI Fundamentals, PostgreSQL, machine learning concepts, cloud deployment", body),
+            paragraph("<b>Languages:</b> Python, TypeScript, JavaScript, Java, SQL, HTML, CSS", body),
+            paragraph(
+                "<b>Frameworks &amp; Tools:</b> React, Next.js, Node.js, Express, FastAPI, PostgreSQL, REST APIs, Git, GitHub",
+                body,
+            ),
+            paragraph(
+                "<b>AI &amp; Data:</b> OpenAI API, Vercel AI SDK, RAG, ChromaDB, BM25, Recharts, Zod",
+                body,
+            ),
         ]
     )
 
     add_section("Projects")
-    add_item("Personal Finance Dashboard - React / Node.js / Express / OpenAI API", "2026")
-    add_bullet(
-        "Built a full-stack AI-integrated application featuring OpenAI-powered financial analysis, full CRUD "
-        "transaction management, interactive category-based spending analytics, and persistent JSON storage."
+    add_item(
+        f'<link href="{PERSONAL_FINANCE_URL}" color="#111111">Personal Finance Dashboard - React / Node.js / Express / OpenAI API</link>',
+        "2026",
     )
     add_bullet(
-        "Designed a REST API layer connecting the React frontend to the Express backend and OpenAI API, "
-        "handling AI responses reliably and presenting actionable insights to end users."
-    )
-    add_bullet(
-        "Applied structured input validation and data integrity checks to ensure accurate, consistent records "
-        "throughout the application."
+        "Built and deployed a finance app with transaction CRUD, monthly reports, Recharts visualizations, "
+        "OpenAI-generated analysis, and PostgreSQL storage on Neon."
     )
 
-    add_item("Real-Time Energy Monitoring Dashboard - Python / React", "Jan 2026", space_before=2)
-    add_bullet(
-        "Built a full-stack hackathon application (Python backend, React frontend) consuming live system data "
-        "via REST APIs; diagnosed and resolved data pipeline failures through systematic debugging under time pressure."
+    add_item(
+        f'<link href="{GATHERBITE_URL}" color="#111111">GatherBite - Next.js / TypeScript / AI Agents</link>',
+        "2026",
+        space_before=2,
     )
     add_bullet(
-        "Collaborated with a multidisciplinary team using Git, delivering documented, version-controlled code "
-        "within a strict deadline."
+        "Built a group-ordering agent with separate planner and verifier models plus deterministic checks for "
+        "dietary coverage, item validity, serving capacity, and budget."
+    )
+    add_bullet(
+        "Added bounded retries and pre- and post-execution verification so missing evidence or a mismatched cart "
+        "fails closed instead of reaching checkout."
     )
 
-    add_item("Astronomy Equipment Store Simulation - Python / OOP", "2025", space_before=2)
+    add_item(
+        f'<link href="{ULTIMATE_TIC_TAC_TOE_URL}" color="#111111">Ultimate Tic-Tac-Toe - React / TypeScript</link>',
+        "2026",
+        space_before=2,
+    )
     add_bullet(
-        "Designed a Python OOP application simulating inventory management and customer interactions, with "
-        "input validation, exception handling, and full documentation."
+        "Built a mobile-first daily puzzle with deterministic UTC-based challenges, a minimax AI with alpha-beta "
+        "pruning, local result persistence, and shareable game summaries."
+    )
+
+    add_item(
+        f'<link href="{DEVPROOF_URL}" color="#111111">DevProof - FastAPI / React / PostgreSQL / OpenAI</link>',
+        "2026",
+        space_before=2,
+    )
+    add_bullet(
+        "Built a GitHub analysis platform that grounds structured engineering-readiness and resume-verification "
+        "reports in repository metadata, commit activity, documentation, and source code."
     )
 
     add_section("Work Experience")
-    add_item("Grocery Clerk - Atlantic Superstore, Charlottetown, PE", "May - Sept 2025", space_before=0.8)
+    add_item(
+        "AI-First Developer - PEI IT Alliance, Charlottetown, PE",
+        "Sep 2026 - Present",
+        space_before=0.8,
+        date_width=1.45,
+    )
     add_bullet(
-        "Resolved customer issues professionally in a high-volume environment; managed competing priorities "
-        "while maintaining accuracy, reliability, and clear communication under pressure."
+        "Build and ship software with AI tooling throughout prototyping, implementation, code review, and "
+        "product development."
+    )
+    add_item("Grocery Clerk - Atlantic Superstore, Charlottetown, PE", "May - Sep 2025", space_before=1.7)
+    add_bullet(
+        "Stocked and organized inventory, helped customers, and managed competing priorities in a high-volume "
+        "store while studying full time."
     )
 
     add_section("Professional Development &amp; Achievements")
@@ -299,17 +335,17 @@ def build_resume(output_path: Path) -> None:
         space_before=0.8,
     )
     add_bullet(
-        "Co-developed a rural veterinary care co-op connecting farmers, veterinarians, portable equipment, "
-        "and shared maintenance support to improve access to care in rural communities."
+        "Helped design a co-op model connecting farmers with travelling veterinarians, shared portable equipment, "
+        "and maintenance support."
     )
     add_bullet(
-        "Collaborated across computer science and veterinary disciplines to refine and pitch the service model; "
+        "Worked with computer science and veterinary teammates to test and pitch the service model; "
         "won the UPEI Animal Welfare Hackathon's Most Animal Welfare Impact award."
     )
     add_item("Wavemakers Innovation &amp; Leadership Program - Graduate", "Feb 2026", space_before=1.7)
     add_bullet(
-        "Completed team-based innovation challenges requiring structured problem analysis, solution documentation, "
-        "and presenting findings to industry professionals."
+        "Completed team challenges in problem framing, solution design, documentation, and presentations to "
+        "industry professionals."
     )
 
     add_section("Availability")

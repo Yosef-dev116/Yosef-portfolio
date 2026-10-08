@@ -11,6 +11,49 @@ from resume.generate_resume import build_resume
 
 
 class ResumeGenerationTests(unittest.TestCase):
+    def test_includes_current_role_and_recent_public_projects(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "resume.pdf"
+            build_resume(output)
+
+            text = " ".join(
+                " ".join((page.extract_text() or "").split())
+                for page in PdfReader(output).pages
+            )
+
+            self.assertIn("AI-First Developer", text)
+            self.assertIn("PEI IT Alliance", text)
+            self.assertIn("Sep 2026 - Present", text)
+            self.assertIn("GatherBite", text)
+            self.assertIn("Ultimate Tic-Tac-Toe", text)
+            self.assertIn("DevProof", text)
+            self.assertNotIn("527", text)
+            self.assertNotIn("Astronomy Equipment Store Simulation", text)
+            self.assertNotIn("Real-Time Energy Monitoring Dashboard", text)
+
+    def test_public_projects_link_to_their_repositories(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "resume.pdf"
+            build_resume(output)
+
+            reader = PdfReader(output)
+            links = {
+                annotation.get_object()["/A"].get_object()["/URI"]
+                for annotation in reader.pages[0].get("/Annots", [])
+                if "/A" in annotation.get_object()
+                and "/URI" in annotation.get_object()["/A"].get_object()
+            }
+
+            self.assertTrue(
+                {
+                    "https://github.com/Yosef-dev116/personal-finance-dashboard",
+                    "https://github.com/Yosef-dev116/gatherbite",
+                    "https://github.com/Yosef-dev116/ultimate-tic-tac-toe",
+                    "https://github.com/Yosef-dev116/Devproof",
+                }.issubset(links),
+                links,
+            )
+
     def test_uses_summer_2027_availability(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "resume.pdf"
