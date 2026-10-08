@@ -111,11 +111,11 @@ export default function Hero() {
                   aria-hidden="true"
                   className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-500"
                 />
-                Building BuildLens AI
+                AI-First Developer
               </p>
 
               <p className="text-sm text-[var(--muted)]">
-                AI-First Developer at PEI IT Alliance
+                PEI IT Alliance
               </p>
 
               <p className="text-sm text-[var(--muted)]">
