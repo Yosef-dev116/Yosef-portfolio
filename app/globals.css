@@ -213,3 +213,34 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+.spotlight {
+  position: relative;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(167, 139, 250, 0.16),
+    transparent 60%
+  );
+}
+.spotlight:hover::before {
+  opacity: 1;
+}
+@keyframes scan {
+  0%,
+  100% {
+    top: 12%;
+  }
+  50% {
+    top: 82%;
+  }
+}
+.scan-line {
+  animation: scan 2.6s ease-in-out infinite;
+}
