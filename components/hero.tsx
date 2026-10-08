@@ -115,7 +115,7 @@ export default function Hero() {
               </p>
 
               <p className="text-sm text-[var(--muted)]">
-                Fall 2026 Co-op
+                Summer 2027 Co-op
               </p>
 
               <p className="text-sm text-[var(--muted)]">

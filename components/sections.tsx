@@ -324,7 +324,7 @@ export function Contact() {
         <SectionTitle
           eyebrow="Contact"
           title="Let's build something together."
-          copy="Whether it's a Fall 2026 co-op opportunity, a project idea, or just a conversation, I'd love to hear from you."
+          copy="Whether it's a Summer 2027 co-op opportunity, a project idea, or just a conversation, I'd love to hear from you."
           className="mb-[38px] max-w-3xl"
         />
 

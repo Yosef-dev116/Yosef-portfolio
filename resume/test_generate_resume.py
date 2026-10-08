@@ -11,6 +11,21 @@ from resume.generate_resume import build_resume
 
 
 class ResumeGenerationTests(unittest.TestCase):
+    def test_uses_summer_2027_availability(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "resume.pdf"
+            build_resume(output)
+
+            text = " ".join(
+                " ".join((page.extract_text() or "").split())
+                for page in PdfReader(output).pages
+            )
+
+            self.assertIn("Actively seeking Summer 2027 co-op opportunities", text)
+            self.assertIn("Available full-time May - August 2027", text)
+            self.assertNotIn("Fall 2026", text)
+            self.assertNotIn("September - December 2026", text)
+
     def test_embeds_latin_modern_typography(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "resume.pdf"

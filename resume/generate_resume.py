@@ -203,7 +203,7 @@ def build_resume(output_path: Path) -> None:
             "building AI-integrated full-stack applications, designing backend systems, and solving real-world "
             "problems through software. Strong foundation in Python, JavaScript, and Java. Passionate about "
             "artificial intelligence, backend development, and building products that genuinely help people. "
-            "Actively seeking Fall 2026 co-op opportunities.",
+            "Actively seeking Summer 2027 co-op opportunities.",
             body,
         )
     )
@@ -315,7 +315,7 @@ def build_resume(output_path: Path) -> None:
     add_section("Availability")
     story.append(
         paragraph(
-            "Available full-time September - December 2026 &nbsp;-&nbsp; Charlottetown, PE &nbsp;-&nbsp; "
+            "Available full-time May - August 2027 &nbsp;-&nbsp; Charlottetown, PE &nbsp;-&nbsp; "
             "Authorized to work in Canada on a co-op work permit through UPEI",
             body,
         )
