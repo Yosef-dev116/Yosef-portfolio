@@ -132,7 +132,7 @@ function ContributionCard({ item }: { item: Contribution }) {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="focus-ring inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
+                className="focus-ring inline-flex items-center gap-2 rounded-xl bg-[var(--text)] px-5 py-3 text-sm font-semibold text-[var(--bg)] transition hover:opacity-90"
               >
                 {item.hrefLabel ?? "View contribution"}
                 <ArrowUpRight size={16} aria-hidden="true" />
