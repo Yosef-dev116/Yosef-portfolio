@@ -35,7 +35,14 @@ export const projects = [
       "Transaction categorization",
       "React dashboard UI",
     ],
-    stack: ["React", "Express", "Node.js", "OpenAI API", "JSON"],
+    stack: [
+      "React",
+      "Express",
+      "Node.js",
+      "PostgreSQL",
+      "OpenAI API",
+      "Recharts",
+    ],
     githubUrl: "https://github.com/Yosef-dev116/personal-finance-dashboard",
     liveUrl: "https://personal-finance-dashboard-eosin-alpha.vercel.app",
     liveNote: "Free-tier backend — may take up to a minute to wake up if idle.",
@@ -144,11 +151,42 @@ export const projects = [
 ];
 
 export const skills = {
-  Languages: ["Python", "Java", "JavaScript", "TypeScript", "SQL"],
+  Languages: ["TypeScript", "Python", "JavaScript", "Java", "SQL", "Swift"],
 
-  Frameworks: ["React", "Next.js", "FastAPI"],
+  Frameworks: [
+    "React",
+    "Next.js",
+    "React Native",
+    "Expo",
+    "FastAPI",
+    "Express",
+    "Tailwind CSS",
+    "Vite",
+  ],
 
-  Tools: ["Git", "GitHub", "Cursor", "VS Code", "Docker", "PostgreSQL"],
+  "AI & Data": [
+    "OpenAI API",
+    "Vercel AI SDK",
+    "RAG",
+    "ChromaDB",
+    "PostgreSQL",
+    "Prisma",
+    "Supabase",
+  ],
+
+  Tools: [
+    "Git",
+    "GitHub",
+    "GitHub Actions",
+    "Docker",
+    "Vercel",
+    "VS Code",
+    "Cursor",
+    "Claude Code",
+    "Codex",
+  ],
+
+  Testing: ["Vitest", "Jest", "Playwright", "Testing Library"],
 
   Learning: ["Machine Learning", "Cloud Computing", "Linux", "System Design"],
 };
