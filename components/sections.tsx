@@ -92,6 +92,24 @@ function LangIcon({ name }: { name: string }) {
           </text>
         </svg>
       );
+    case "Swift":
+      return (
+        <svg viewBox="0 0 24 24" className={className}>
+          <rect width="24" height="24" rx="6" fill="#f05138" />
+          <text
+            x="12"
+            y="16"
+            fontFamily="Arial, sans-serif"
+            fontSize="6.5"
+            fontWeight="700"
+            fill="#fff"
+            textAnchor="middle"
+          >
+            Swift
+          </text>
+        </svg>
+      );
+
     default:
       return null;
   }
@@ -182,7 +200,12 @@ export function Skills() {
                 </div>
               ) : (
                 <p className="leading-7 text-[var(--muted)]">
-                  {skillItems.join(" · ")}
+                  {skillItems.map((skill, index) => (
+                    <span key={skill}>
+                      {index > 0 && " · "}
+                      <span className="whitespace-nowrap">{skill}</span>
+                    </span>
+                  ))}
                 </p>
               )}
             </Reveal>
